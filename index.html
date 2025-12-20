@@ -1,48 +1,46 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Data Utility Tool</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🕵🏻 Insta Check</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Material Icons (Symbols) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap" />
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app">
     <header class="topbar">
       <div class="brand">
-         <!-- <div class="brand__logo">IC</div> -->
         <div class="brand__text">
           <div class="brand__title">🕵🏻 Insta Check</div>
-          <div class="brand__sub">Quickly find matching data, replace outdated text, and deduplicate your list.</div>
+          <div class="brand__sub">Simplify your data and followers</div>
         </div>
       </div>
 
       <div class="dataset">
-        <span class="dataset__label">Dataset</span>
+        <span class="dataset__label">Data</span>
         <span id="statusPill" class="pill pill--muted">Loading...</span>
       </div>
     </header>
 
     <nav class="tabs" role="tablist">
-      <button class="tab tab--active" data-tab="search" type="button">🔎 Batch Search</button>
-      <button class="tab" data-tab="replace" type="button">🔄 Find & Replace</button>
-      <button class="tab" data-tab="dedupe" type="button">🗑️ Remove Duplicate</button>
+      <button class="tab tab--active" data-tab="search" type="button">🔎 Batsearch</button>
+      <button class="tab" data-tab="replace" type="button">🔄 Refind</button>
+      <button class="tab" data-tab="dedupe" type="button">🗑️ Reduce</button>
+      <button class="tab" data-tab="ig" type="button">👨‍👧‍👧 Folsync</button>
     </nav>
 
     <main class="container">
       <!-- TAB 1: Batch Search -->
       <section id="tab-search" class="panel">
         <div class="panel__head">
-          <h2 class="panel__title">Batch Data Search</h2>
-          <p class="panel__desc">Search multiple entries at once to identify matching records in your database.</p>
+          <h2 class="panel__title">Batch Search</h2>
+          <p class="panel__desc">Check for matching accounts in your list</p>
         </div>
 
         <div class="block">
@@ -57,9 +55,12 @@
           <button id="btnSearchClear" class="btn btn--secondary" type="button">Clear Data</button>
         </div>
 
-        <div class="block">
+        <div id="searchResultsBlock" class="block is-hidden">
           <div class="block__head">
             <h3 class="block__title">Results</h3>
+            <div class="block__meta">
+              <span id="searchStat" class="statline"></span>
+            </div>
           </div>
           <div id="searchResults" class="results"></div>
         </div>
@@ -69,30 +70,19 @@
       <section id="tab-replace" class="panel is-hidden">
         <div class="panel__head">
           <h2 class="panel__title">Find & Replace</h2>
-          <p class="panel__desc">Modify your content by finding specific words and replacing them in bulk.</p>
+          <p class="panel__desc">Adjust your text with find and replace</p>
         </div>
 
         <div class="block">
           <div class="block__head">
             <h3 class="block__title">Input Data</h3>
             <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyFrInput">Copy to clipboard</button>
+              <button class="btn btn--secondary" type="button" id="copyFrInput">Copy</button>
             </div>
           </div>
           <textarea id="frInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
         </div>
 
-        <div class="block">
-          <div class="block__head">
-            <h3 class="block__title">Output Data</h3>
-            <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyFrOutput">Copy to clipboard</button>
-            </div>
-          </div>
-          <textarea id="frOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
-        </div>
-
-        <!-- Options box (style disamain seperti block input/output) -->
         <div class="block">
           <div class="block__head">
             <h3 class="block__title">Find & Replace Options</h3>
@@ -102,37 +92,47 @@
             <div class="grid-2">
               <div class="fr-row">
                 <label class="label">Find Text</label>
-                <input id="find1" class="input" placeholder="Find this text">
+                <input id="find1" class="input" placeholder="Find this text" />
               </div>
               <div class="fr-row">
                 <label class="label">Replace Text</label>
-                <input id="rep1" class="input" placeholder="Replace with this text">
+                <input id="rep1" class="input" placeholder="Replace with this text" />
               </div>
 
               <div class="fr-row">
                 <label class="label">Find Text</label>
-                <input id="find2" class="input" placeholder="Find this text">
+                <input id="find2" class="input" placeholder="Find this text" />
               </div>
               <div class="fr-row">
                 <label class="label">Replace Text</label>
-                <input id="rep2" class="input" placeholder="Replace with this text">
+                <input id="rep2" class="input" placeholder="Replace with this text" />
               </div>
 
               <div class="fr-row">
                 <label class="label">Find Text</label>
-                <input id="find3" class="input" placeholder="Find text">
+                <input id="find3" class="input" placeholder="Find text" />
               </div>
               <div class="fr-row">
                 <label class="label">Replace Text</label>
-                <input id="rep3" class="input" placeholder="Replace with this text">
+                <input id="rep3" class="input" placeholder="Replace with this text" />
               </div>
             </div>
           </div>
         </div>
 
         <div class="cta-row">
-          <button id="btnReplace" class="btn btn--primary" type="button">Find & Replace Text</button>
-          <button id="btnReplaceClear" class="btn btn--secondary " type="button">Clear Data</button>
+          <button id="btnReplace" class="btn btn--primary" type="button">Replace All Text</button>
+          <button id="btnReplaceClear" class="btn btn--secondary" type="button">Clear Data</button>
+        </div>
+
+        <div class="block">
+          <div class="block__head">
+            <h3 class="block__title">Output Data</h3>
+            <div class="block__actions">
+              <button class="btn btn--secondary" type="button" id="copyFrOutput">Copy</button>
+            </div>
+          </div>
+          <textarea id="frOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
         </div>
       </section>
 
@@ -140,14 +140,14 @@
       <section id="tab-dedupe" class="panel is-hidden">
         <div class="panel__head">
           <h2 class="panel__title">Remove Duplicate</h2>
-          <p class="panel__desc">Clean your data instantly by filtering out all redundant entries.</p>
+          <p class="panel__desc">Clear repetitive lines for a unique list</p>
         </div>
 
         <div class="block">
           <div class="block__head">
             <h3 class="block__title">Input Data</h3>
             <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyDedupeInput">Copy to clipboard</button>
+              <button class="btn btn--secondary" type="button" id="copyDedupeInput">Copy</button>
             </div>
           </div>
           <textarea id="dedupeInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
@@ -157,13 +157,13 @@
           <div class="block__head">
             <h3 class="block__title">Output Data</h3>
             <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyDedupeOutput">Copy to clipboard</button>
+              <button class="btn btn--secondary" type="button" id="copyDedupeOutput">Copy</button>
             </div>
           </div>
           <textarea id="dedupeOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
         </div>
 
-        <div class="cta-row cta-row--left">
+        <div class="cta-row">
           <button id="btnDedupe" class="btn btn--primary" type="button">Remove Duplicate</button>
           <button id="btnDedupeClear" class="btn btn--secondary" type="button">Clear Data</button>
           <div class="statline" id="dedupeStat"></div>
@@ -173,10 +173,78 @@
           <div class="block__head">
             <h3 class="block__title">Removed Data</h3>
             <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyRemovedData">Copy to clipboard</button>
+              <button class="btn btn--secondary" type="button" id="copyRemovedData">Copy</button>
             </div>
           </div>
-          <textarea id="removedData" class="textarea" placeholder="Removed data will be shown here..."></textarea>
+          <textarea id="removedData" class="textarea" placeholder="Removed duplicates will appear here..."></textarea>
+        </div>
+      </section>
+
+      <!-- TAB 4: Synchronizes Followers -->
+      <section id="tab-ig" class="panel is-hidden">
+        <div class="panel__head">
+          <h2 class="panel__title">Synchronizes Followers</h2>
+          <p class="panel__desc">Track and sort your followers</p>
+        </div>
+
+        <div class="block">
+          <div class="block__head">
+            <h3 class="block__title">Upload Files</h3>
+          </div>
+
+          <div class="grid-2">
+            <div class="dropbox" id="dropFollowers">
+              <div class="dropbox__label">Followers</div>
+
+              <div class="dropbox__row">
+                <button class="btn btn--secondary dropbox__btn" type="button" id="btnPickFollowers">Choose file</button>
+                <div class="dropbox__info">
+                  <div class="dropbox__name" id="followersName">No file chosen</div>
+                  <div class="dropbox__count" id="followersCount"></div>
+                </div>
+              </div>
+
+              <input id="fileFollowers" class="dropbox__input" type="file" accept=".html,.json,text/html,application/json" />
+              <div class="dropbox__hint">Drag or drop html or json file here</div>
+            </div>
+
+            <div class="dropbox" id="dropFollowing">
+              <div class="dropbox__label">Following</div>
+
+              <div class="dropbox__row">
+                <button class="btn btn--secondary dropbox__btn" type="button" id="btnPickFollowing">Choose file</button>
+                <div class="dropbox__info">
+                  <div class="dropbox__name" id="followingName">No file chosen</div>
+                  <div class="dropbox__count" id="followingCount"></div>
+                </div>
+              </div>
+
+              <input id="fileFollowing" class="dropbox__input" type="file" accept=".html,.json,text/html,application/json" />
+              <div class="dropbox__hint">Drag or drop html or json file here</div>
+            </div>
+          </div>
+
+          <div class="cta-row cta-row--left">
+            <button id="btnNotFollowMe" class="btn btn--primary" type="button">
+              Check Who Unfollowed
+            </button>
+            <button id="btnINotFollow" class="btn btn--primary" type="button">
+              Check Who to Follow Back
+            </button>
+            <button id="btnIgClear" class="btn btn--secondary" type="button">
+              Clear Data
+            </button>
+          </div>
+        </div>
+
+        <div id="igResultsBlock" class="block is-hidden">
+          <div class="block__head">
+            <h3 class="block__title">Results</h3>
+            <div class="block__meta">
+              <span id="igSideStat" class="statline"></span>
+            </div>
+          </div>
+          <div id="igResults" class="results"></div>
         </div>
       </section>
     </main>
