@@ -169,7 +169,7 @@ document.getElementById("btnDedupe").addEventListener("click", () => {
 
   document.getElementById(
     "dedupeStat"
-  ).textContent = `(${original} original lines, ${removed.length} removed, ${unique.length} remaining)`; // (8) tidak bold (CSS)
+  ).textContent = `↪ ${original} original lines, ${removed.length} removed, ${unique.length} remaining`;
 });
 
 document.getElementById("btnDedupeClear").addEventListener("click", () => {

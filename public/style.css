@@ -212,6 +212,9 @@ body{
 /* (8) statline jangan bold */
 .statline{
   margin:10px 2px 2px;
+  font-size:14px;
   font-weight:400;
   color:var(--muted);
+  flex-grow: 1;
+  text-align: right;
 }

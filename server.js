@@ -1,13 +1,13 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const XLSX = require("xlsx");
 
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-const DATASET_PATH = path.join(__dirname, "data", "dataset.xlsx");
+// ganti dari xlsx -> json
+const DATASET_PATH = path.join(__dirname, "data", "dataset.json");
 
 // ===== Helpers =====
 function normalize(str) {
@@ -19,32 +19,60 @@ function normalize(str) {
 
 function loadDataset() {
   if (!fs.existsSync(DATASET_PATH)) {
-    console.log("⚠ dataset.xlsx not found");
+    console.log("⚠ dataset.json not found");
     return { set: new Set(), count: 0 };
   }
 
-  const wb = XLSX.readFile(DATASET_PATH);
-  const sheet = wb.Sheets[wb.SheetNames[0]];
-  const rows = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+  try {
+    const raw = fs.readFileSync(DATASET_PATH, "utf-8");
+    const parsed = JSON.parse(raw);
 
-  const key = Object.keys(rows[0] || {})[0]; // kolom pertama
-  const set = new Set();
+    // support:
+    // 1) ["a", "b", ...]
+    // 2) [{account:"..."}, ...] (punyamu)
+    // 3) [{anyKey:"..."}, ...] -> ambil key pertama seperti versi xlsx dulu
+    const set = new Set();
 
-  rows.forEach((r) => {
-    const v = normalize(r[key]);
-    if (v) set.add(v);
-  });
+    if (Array.isArray(parsed)) {
+      if (parsed.length === 0) {
+        console.log("⚠ dataset.json empty array");
+        return { set, count: 0 };
+      }
 
-  console.log(`✅ Dataset loaded: ${set.size} rows`);
-  return { set, count: set.size };
+      if (typeof parsed[0] === "string") {
+        for (const v of parsed) {
+          const n = normalize(v);
+          if (n) set.add(n);
+        }
+      } else if (parsed[0] && typeof parsed[0] === "object") {
+        const preferredKey = "account";
+        const fallbackKey = Object.keys(parsed[0] || {})[0]; // mirip logic xlsx lama
+        const keyToUse = preferredKey in parsed[0] ? preferredKey : fallbackKey;
+
+        for (const row of parsed) {
+          const v = normalize(row?.[keyToUse]);
+          if (v) set.add(v);
+        }
+      }
+    } else {
+      console.log("⚠ dataset.json must be an array");
+      return { set: new Set(), count: 0 };
+    }
+
+    console.log(`✅ Dataset loaded: ${set.size} rows`);
+    return { set, count: set.size };
+  } catch (err) {
+    console.log("❌ Failed to load dataset.json:", err.message);
+    return { set: new Set(), count: 0 };
+  }
 }
 
 // ===== In-memory index =====
 let INDEX = loadDataset();
 
-// Auto reload jika file Excel diganti
+// Auto reload jika file JSON diganti
 fs.watchFile(DATASET_PATH, { interval: 1000 }, () => {
-  console.log("🔄 dataset.xlsx changed → reloading");
+  console.log("🔄 dataset.json changed → reloading");
   INDEX = loadDataset();
 });
 
