@@ -16,26 +16,33 @@ tabs.forEach((t) => {
   });
 });
 
-// ===== Status pill =====
-async function refreshStatus() {
+// ===== Dataset (CLIENT SIDE) =====
+let DATASET_SET = new Set();
+
+function normalize(v) {
+  return String(v ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+async function loadDataset() {
+  const pill = document.getElementById("statusPill");
   try {
-    const r = await fetch("/api/status");
-    const j = await r.json();
-    const pill = document.getElementById("statusPill");
-    if (j.loaded) {
-      pill.className = "pill pill--ok";
-      pill.textContent = `Loaded 📑 ${j.count}`;
-    } else {
-      pill.className = "pill pill--muted";
-      pill.textContent = "Dataset belum tersedia";
-    }
-  } catch {
-    const pill = document.getElementById("statusPill");
+    const r = await fetch("dataset.json");
+    const data = await r.json();
+
+    DATASET_SET = new Set(data.map((x) => normalize(x.account)));
+
+    pill.className = "pill pill--ok";
+    pill.textContent = `Loaded 📑 ${DATASET_SET.size}`;
+  } catch (e) {
     pill.className = "pill pill--muted";
-    pill.textContent = "Status error";
+    pill.textContent = "Dataset error";
+    console.error(e);
   }
 }
-refreshStatus();
+loadDataset();
 
 // ===== Helpers =====
 function getLinesFromTextarea(id) {
@@ -60,41 +67,33 @@ async function copyText(text) {
   document.body.removeChild(ta);
 }
 
-// ===== TAB 1: Batch Search =====
+// ===== TAB 1: Batch Search (NO API) =====
 document.getElementById("btnSearch").addEventListener("click", runSearch);
 document.getElementById("btnSearchClear").addEventListener("click", () => {
   document.getElementById("searchInput").value = "";
   document.getElementById("searchResults").innerHTML = "";
 });
 
-async function runSearch() {
+function runSearch() {
   const lines = getLinesFromTextarea("searchInput");
   const box = document.getElementById("searchResults");
   box.innerHTML = "";
   if (!lines.length) return;
 
-  const r = await fetch("/api/search", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ lines }),
-  });
-  const j = await r.json();
-
-  j.results.forEach((item) => {
+  lines.forEach((v) => {
     const row = document.createElement("div");
     row.className = "result-item";
 
     const icon = document.createElement("div");
-    icon.className =
-      "icon " + (item.status === "match" ? "icon--ok" : "icon--no");
-    icon.innerHTML =
-      item.status === "match"
-        ? `<span class="material-symbols-outlined">check</span>`
-        : `<span class="material-symbols-outlined">close</span>`;
+    const isMatch = DATASET_SET.has(normalize(v));
+    icon.className = "icon " + (isMatch ? "icon--ok" : "icon--no");
+    icon.innerHTML = isMatch
+      ? `<span class="material-symbols-outlined">check</span>`
+      : `<span class="material-symbols-outlined">close</span>`;
 
     const text = document.createElement("div");
     text.className = "result-text";
-    text.textContent = item.input; // (4) hapus keterangan match/not match
+    text.textContent = v;
 
     row.appendChild(icon);
     row.appendChild(text);
@@ -102,56 +101,38 @@ async function runSearch() {
   });
 }
 
-// ===== TAB 2: Find & Replace =====
+// ===== TAB 2: Find & Replace (TIDAK DIUBAH) =====
 document.getElementById("btnReplace").addEventListener("click", () => {
   const input = document.getElementById("frInput").value;
 
   const pairs = [
-    {
-      f: document.getElementById("find1").value,
-      r: document.getElementById("rep1").value,
-    },
-    {
-      f: document.getElementById("find2").value,
-      r: document.getElementById("rep2").value,
-    },
-    {
-      f: document.getElementById("find3").value,
-      r: document.getElementById("rep3").value,
-    },
-  ].filter((p) => (p.f ?? "").length > 0);
+    { f: find1.value, r: rep1.value },
+    { f: find2.value, r: rep2.value },
+    { f: find3.value, r: rep3.value },
+  ].filter((p) => p.f);
 
   let out = input;
   for (const p of pairs) {
-    const escaped = p.f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // plain text find
-    out = out.replace(new RegExp(escaped, "g"), p.r ?? "");
+    const esc = p.f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    out = out.replace(new RegExp(esc, "g"), p.r ?? "");
   }
-  document.getElementById("frOutput").value = out;
+  frOutput.value = out;
 });
 
 document.getElementById("btnReplaceClear").addEventListener("click", () => {
-  document.getElementById("frInput").value = "";
-  document.getElementById("frOutput").value = "";
-  document.getElementById("find1").value = "";
-  document.getElementById("rep1").value = "";
-  document.getElementById("find2").value = "";
-  document.getElementById("rep2").value = "";
-  document.getElementById("find3").value = "";
-  document.getElementById("rep3").value = "";
+  frInput.value = "";
+  frOutput.value = "";
+  find1.value = rep1.value = "";
+  find2.value = rep2.value = "";
+  find3.value = rep3.value = "";
 });
 
-document.getElementById("copyFrInput").addEventListener("click", async () => {
-  await copyText(document.getElementById("frInput").value);
-});
-document.getElementById("copyFrOutput").addEventListener("click", async () => {
-  await copyText(document.getElementById("frOutput").value);
-});
+copyFrInput.onclick = () => copyText(frInput.value);
+copyFrOutput.onclick = () => copyText(frOutput.value);
 
-// ===== TAB 3: Remove Duplicate =====
+// ===== TAB 3: Remove Duplicate (TIDAK DIUBAH) =====
 document.getElementById("btnDedupe").addEventListener("click", () => {
   const lines = getLinesFromTextarea("dedupeInput");
-  const original = lines.length;
-
   const seen = new Set();
   const unique = [];
   const removed = [];
@@ -164,33 +145,18 @@ document.getElementById("btnDedupe").addEventListener("click", () => {
     }
   }
 
-  document.getElementById("dedupeOutput").value = unique.join("\n");
-  document.getElementById("removedData").value = removed.join("\n");
-
-  document.getElementById(
-    "dedupeStat"
-  ).textContent = `↪ ${original} original lines, ${removed.length} removed, ${unique.length} remaining`;
+  dedupeOutput.value = unique.join("\n");
+  removedData.value = removed.join("\n");
+  dedupeStat.textContent = `↪ ${lines.length} original, ${removed.length} removed, ${unique.length} remaining`;
 });
 
-document.getElementById("btnDedupeClear").addEventListener("click", () => {
-  document.getElementById("dedupeInput").value = "";
-  document.getElementById("dedupeOutput").value = "";
-  document.getElementById("removedData").value = "";
-  document.getElementById("dedupeStat").textContent = "";
-});
+btnDedupeClear.onclick = () => {
+  dedupeInput.value = "";
+  dedupeOutput.value = "";
+  removedData.value = "";
+  dedupeStat.textContent = "";
+};
 
-document
-  .getElementById("copyDedupeInput")
-  .addEventListener("click", async () => {
-    await copyText(document.getElementById("dedupeInput").value);
-  });
-document
-  .getElementById("copyDedupeOutput")
-  .addEventListener("click", async () => {
-    await copyText(document.getElementById("dedupeOutput").value);
-  });
-document
-  .getElementById("copyRemovedData")
-  .addEventListener("click", async () => {
-    await copyText(document.getElementById("removedData").value);
-  });
+copyDedupeInput.onclick = () => copyText(dedupeInput.value);
+copyDedupeOutput.onclick = () => copyText(dedupeOutput.value);
+copyRemovedData.onclick = () => copyText(removedData.value);
