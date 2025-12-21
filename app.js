@@ -3,6 +3,7 @@ const sections = {
   search: document.getElementById("tab-search"),
   replace: document.getElementById("tab-replace"),
   dedupe: document.getElementById("tab-dedupe"),
+  cleaner: document.getElementById("tab-cleaner"),
   ig: document.getElementById("tab-ig"),
 };
 
@@ -302,7 +303,7 @@ function runSearch() {
     );
   });
 
-  searchStat.textContent = `${match} Account mMatch ┆ ${notMatch} Account not match`;
+  searchStat.textContent = `${match} Account match ┆ ${notMatch} Account not match`;
 }
 
 document.getElementById("btnReplace").addEventListener("click", () => {
@@ -648,4 +649,67 @@ document.getElementById("btnIgClear").addEventListener("click", () => {
   igResults.innerHTML = "";
   igSideStat.textContent = "";
   if (igResultsBlock) igResultsBlock.classList.add("is-hidden");
+});
+
+function cleanInstagramToList(raw) {
+  const text = String(raw ?? "").trim();
+  if (!text) return "";
+
+  const re = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)(?:\/)?/g;
+
+  const blocked = new Set(["p", "reel", "reels", "tv", "stories", "explore", "accounts", "about"]);
+
+  const out = [];
+  const seen = new Set();
+  let m;
+
+  while ((m = re.exec(text)) !== null) {
+    const u = (m[1] || "").trim();
+    if (!u) continue;
+    if (blocked.has(u.toLowerCase())) continue;
+
+    const line = `instagram.com/${u}`;
+    const key = line.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(line);
+  }
+
+  // Fallback: kalau user paste @username atau username per baris
+  if (out.length === 0) {
+    const lines = text.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    for (const l of lines) {
+      const u = l.replace(/^@/, "");
+      if (!u) continue;
+      const line = `instagram.com/${u}`;
+      const key = line.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(line);
+    }
+  }
+
+  return out.join("\n");
+}
+
+const cleanerInput = document.getElementById("cleanerInput");
+const cleanerOutput = document.getElementById("cleanerOutput");
+
+document.getElementById("btnCleanIgLinks").addEventListener("click", () => {
+  const cleaned = cleanInstagramToList(cleanerInput.value);
+  cleanerOutput.value = cleaned;
+  if (cleaned) showToast("Cleaner: IG links ready ✅");
+  else showToast("Tidak ada username IG yang terbaca.");
+});
+
+document.getElementById("btnCopyCleanerOutput").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(cleanerOutput.value || "");
+    showToast("Copied ✅");
+  } catch (e) {
+    cleanerOutput.focus();
+    cleanerOutput.select();
+    document.execCommand("copy");
+    showToast("Copied ✅");
+  }
 });

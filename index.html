@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>🕵🏻 Insta Check</title>
+  <title> Insta Check</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕵🏻</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +34,7 @@
       <button class="tab tab--active" data-tab="search" type="button">🔎 Batsearch</button>
       <button class="tab" data-tab="replace" type="button">🔄 Refind</button>
       <button class="tab" data-tab="dedupe" type="button">🗑️ Reduce</button>
+      <button class="tab" data-tab="cleaner" type="button">🧼 Cleanink</button>
       <button class="tab" data-tab="ig" type="button">👨‍👧‍👧 Folsync</button>
     </nav>
 
@@ -180,7 +183,66 @@
         </div>
       </section>
 
-      <!-- TAB 4: Synchronizes Followers -->
+      <!-- TAB 4: Link Cleaner -->
+      <section id="tab-cleaner" class="panel is-hidden">
+        <div class="panel__head">
+          <h2 class="panel__title">Link Cleaner</h2>
+          <p class="panel__desc">Instantly clean and shorten your links</p>
+        </div>
+
+        <div class="block">
+          <div class="block__head">
+            <h3 class="block__title">Input Data</h3>
+          </div>
+          <textarea
+            id="cleanerInput"
+            class="textarea"
+            placeholder="Paste link IG berantakan di sini..."
+          ></textarea>
+        </div>
+
+        <!-- BUTTON ROW -->
+        <div class="cta-row">
+          <button
+            id="btnCleanerIg"
+            class="btn btn--primary"
+            type="button"
+          >
+            Clean Link
+          </button>
+          <button
+            id="btnCleanerClear"
+            class="btn btn--secondary"
+            type="button"
+          >
+            Clear Data
+          </button>
+        </div>
+
+        <div id="cleanerResultWrap" class="block is-hidden">
+          <div class="block__head">
+            <h3 class="block__title">Result</h3>
+            <div class="block__actions">
+              <button
+                id="copyCleanerOutput"
+                class="btn btn--secondary"
+                type="button"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+
+          <textarea
+            id="cleanerOutput"
+            class="textarea"
+            placeholder="Results will be shown here..."
+            readonly
+          ></textarea>
+        </div>
+      </section>
+
+      <!-- TAB 5: Synchronizes Followers -->
       <section id="tab-ig" class="panel is-hidden">
         <div class="panel__head">
           <h2 class="panel__title">Synchronizes Followers</h2>
