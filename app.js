@@ -692,24 +692,28 @@ function cleanInstagramToList(raw) {
   return out.join("\n");
 }
 
+// ===== CLEANER TAB (match index.html IDs) =====
 const cleanerInput = document.getElementById("cleanerInput");
 const cleanerOutput = document.getElementById("cleanerOutput");
+const cleanerResultWrap = document.getElementById("cleanerResultWrap");
 
-document.getElementById("btnCleanIgLinks").addEventListener("click", () => {
+const btnCleanerIg = document.getElementById("btnCleanerIg");
+const btnCleanerClear = document.getElementById("btnCleanerClear");
+const copyCleanerOutput = document.getElementById("copyCleanerOutput");
+
+// Copy: tetap pakai toast global "Content copied to clipboard"
+copyCleanerOutput.onclick = () => copyText(cleanerOutput.value);
+
+// Clean button: show result setelah klik (tanpa toast lain)
+btnCleanerIg.addEventListener("click", () => {
   const cleaned = cleanInstagramToList(cleanerInput.value);
   cleanerOutput.value = cleaned;
-  if (cleaned) showToast("Cleaner: IG links ready ✅");
-  else showToast("Tidak ada username IG yang terbaca.");
+  cleanerResultWrap.classList.remove("is-hidden"); // ini yang bikin result muncul
 });
 
-document.getElementById("btnCopyCleanerOutput").addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(cleanerOutput.value || "");
-    showToast("Copied ✅");
-  } catch (e) {
-    cleanerOutput.focus();
-    cleanerOutput.select();
-    document.execCommand("copy");
-    showToast("Copied ✅");
-  }
+// Clear button: hide lagi (tanpa toast)
+btnCleanerClear.addEventListener("click", () => {
+  cleanerInput.value = "";
+  cleanerOutput.value = "";
+  cleanerResultWrap.classList.add("is-hidden");
 });
