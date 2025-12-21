@@ -692,7 +692,6 @@ function cleanInstagramToList(raw) {
   return out.join("\n");
 }
 
-// ===== CLEANER TAB (match index.html IDs) =====
 const cleanerInput = document.getElementById("cleanerInput");
 const cleanerOutput = document.getElementById("cleanerOutput");
 const cleanerResultWrap = document.getElementById("cleanerResultWrap");
@@ -701,17 +700,14 @@ const btnCleanerIg = document.getElementById("btnCleanerIg");
 const btnCleanerClear = document.getElementById("btnCleanerClear");
 const copyCleanerOutput = document.getElementById("copyCleanerOutput");
 
-// Copy: tetap pakai toast global "Content copied to clipboard"
 copyCleanerOutput.onclick = () => copyText(cleanerOutput.value);
 
-// Clean button: show result setelah klik (tanpa toast lain)
 btnCleanerIg.addEventListener("click", () => {
   const cleaned = cleanInstagramToList(cleanerInput.value);
   cleanerOutput.value = cleaned;
-  cleanerResultWrap.classList.remove("is-hidden"); // ini yang bikin result muncul
+  cleanerResultWrap.classList.remove("is-hidden"); 
 });
 
-// Clear button: hide lagi (tanpa toast)
 btnCleanerClear.addEventListener("click", () => {
   cleanerInput.value = "";
   cleanerOutput.value = "";
