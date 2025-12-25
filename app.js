@@ -179,7 +179,7 @@ async function loadDataset() {
     });
 
     pill.className = "pill pill--ok";
-    pill.textContent = `📑 ${Math.floor(DATASET_MAP.size / 3)}`;
+    pill.textContent = `📑 ${Math.floor(DATASET_MAP.size/2)}`;
   } catch (e) {
     pill.className = "pill pill--muted";
     pill.textContent = "Dataset error";
