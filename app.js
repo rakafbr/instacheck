@@ -1,10 +1,12 @@
+// 01) CORE
+// ==================================================
 const tabs = document.querySelectorAll(".tab");
 const sections = {
-  search: document.getElementById("tab-search"),
-  replace: document.getElementById("tab-replace"),
-  dedupe: document.getElementById("tab-dedupe"),
-  cleaner: document.getElementById("tab-cleaner"),
-  ig: document.getElementById("tab-ig"),
+  batsearch: document.getElementById("tab-batsearch"),
+  findrep: document.getElementById("tab-findrep"),
+  redupe: document.getElementById("tab-redupe"),
+  cleanink: document.getElementById("tab-cleanink"),
+  folsync: document.getElementById("tab-folsync"),
 };
 
 tabs.forEach((t) => {
@@ -69,6 +71,8 @@ function hideToast() {
   toastTimer = null;
 }
 
+// 02) UTILS
+// ==================================================
 function normalize(v) {
   return String(v ?? "")
     .trim()
@@ -119,6 +123,7 @@ async function copyText(text) {
   }
 }
 
+// ==================================================
 function isInstagramLike(input) {
   const s = String(input ?? "").toLowerCase();
   return (
@@ -156,6 +161,8 @@ function directIgUrl(usernameOrLink) {
   return u ? `https://www.instagram.com/${u}/` : "https://www.instagram.com/";
 }
 
+// 03) USER INTERFACE
+// ==================================================
 let DATASET_MAP = new Map();
 
 async function loadDataset() {
@@ -242,24 +249,26 @@ function renderCard({ statusBadge, title, sub, actions = [] }) {
   return card;
 }
 
-const searchResults = document.getElementById("searchResults");
-const searchStat = document.getElementById("searchStat");
-const searchResultsBlock = document.getElementById("searchResultsBlock");
+// 04) FEATURES — BATSEARCH (Batch Search)
+// ==================================================
+const searchResults = document.getElementById("batsearchResults");
+const searchStat = document.getElementById("batsearchStat");
+const searchResultsBlock = document.getElementById("batsearchResultsBlock");
 
-document.getElementById("btnSearch").addEventListener("click", () => {
+document.getElementById("btnBatsearch").addEventListener("click", () => {
   if (searchResultsBlock) searchResultsBlock.classList.remove("is-hidden");
   runSearch();
 });
 
-document.getElementById("btnSearchClear").addEventListener("click", () => {
-  document.getElementById("searchInput").value = "";
+document.getElementById("btnBatsearchClear").addEventListener("click", () => {
+  document.getElementById("batsearchInput").value = "";
   searchResults.innerHTML = "";
   searchStat.textContent = "";
   if (searchResultsBlock) searchResultsBlock.classList.add("is-hidden");
 });
 
 function runSearch() {
-  const inputs = getLinesFromTextarea("searchInput");
+  const inputs = getLinesFromTextarea("batsearchInput");
   searchResults.innerHTML = "";
 
   if (!inputs.length) {
@@ -306,7 +315,9 @@ function runSearch() {
   searchStat.textContent = `${match} Account match ┆ ${notMatch} Account not match`;
 }
 
-document.getElementById("btnReplace").addEventListener("click", () => {
+// 04) FEATURES — FINDREP (Find Replace)
+// ==================================================
+document.getElementById("btnFindrep").addEventListener("click", () => {
   const input = document.getElementById("frInput").value;
 
   const pairs = [
@@ -323,7 +334,7 @@ document.getElementById("btnReplace").addEventListener("click", () => {
   frOutput.value = out;
 });
 
-document.getElementById("btnReplaceClear").addEventListener("click", () => {
+document.getElementById("btnFindrepClear").addEventListener("click", () => {
   frInput.value = "";
   frOutput.value = "";
   find1.value = rep1.value = "";
@@ -334,8 +345,10 @@ document.getElementById("btnReplaceClear").addEventListener("click", () => {
 copyFrInput.onclick = () => copyText(frInput.value);
 copyFrOutput.onclick = () => copyText(frOutput.value);
 
-document.getElementById("btnDedupe").addEventListener("click", () => {
-  const lines = getLinesFromTextarea("dedupeInput");
+// 04) FEATURES — REDUPE (Remove Duplicate)
+// ==================================================
+document.getElementById("btnredupe").addEventListener("click", () => {
+  const lines = getLinesFromTextarea("redupeInput");
   const seen = new Set();
   const unique = [];
   const removed = [];
@@ -348,28 +361,95 @@ document.getElementById("btnDedupe").addEventListener("click", () => {
     }
   }
 
-  dedupeOutput.value = unique.join("\n");
+  redupeOutput.value = unique.join("\n");
   removedData.value = removed.join("\n");
-  dedupeStat.textContent = `${lines.length} Original ┆ ${removed.length} Removed ┆ ${unique.length} Remaining`;
+  redupeStat.textContent = `${lines.length} Original ┆ ${removed.length} Removed ┆ ${unique.length} Remaining`;
 });
 
-btnDedupeClear.onclick = () => {
-  dedupeInput.value = "";
-  dedupeOutput.value = "";
+btnredupeClear.onclick = () => {
+  redupeInput.value = "";
+  redupeOutput.value = "";
   removedData.value = "";
-  dedupeStat.textContent = "";
+  redupeStat.textContent = "";
 };
 
-copyDedupeInput.onclick = () => copyText(dedupeInput.value);
-copyDedupeOutput.onclick = () => copyText(dedupeOutput.value);
+copyredupeInput.onclick = () => copyText(redupeInput.value);
+copyredupeOutput.onclick = () => copyText(redupeOutput.value);
 copyRemovedData.onclick = () => copyText(removedData.value);
 
+// 04) FEATURES — CLEANINK (Link Cleaner)
+// ==================================================
+function cleanInstagramToList(raw) {
+
+  const text = String(raw ?? "").trim();
+  if (!text) return "";
+
+  const re = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)(?:\/)?/g;
+
+  const blocked = new Set(["p", "reel", "reels", "tv", "stories", "explore", "accounts", "about"]);
+
+  const out = [];
+  const seen = new Set();
+  let m;
+
+  while ((m = re.exec(text)) !== null) {
+    const u = (m[1] || "").trim();
+    if (!u) continue;
+    if (blocked.has(u.toLowerCase())) continue;
+
+    const line = `instagram.com/${u}`;
+    const key = line.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(line);
+  }
+
+  if (out.length === 0) {
+    const lines = text.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+    for (const l of lines) {
+      const u = l.replace(/^@/, "");
+      if (!u) continue;
+      const line = `instagram.com/${u}`;
+      const key = line.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(line);
+    }
+  }
+
+  return out.join("\n");
+}
+
+const cleaninkInput = document.getElementById("cleaninkInput");
+const cleaninkOutput = document.getElementById("cleaninkOutput");
+const cleaninkResultWrap = document.getElementById("cleaninkResultWrap");
+
+const btnCleanink = document.getElementById("btnCleanink");
+const btnCleaninkClear = document.getElementById("btnCleaninkClear");
+const copyCleaninkOutput = document.getElementById("copyCleaninkOutput");
+
+copyCleaninkOutput.onclick = () => copyText(cleaninkOutput.value);
+
+btnCleanink.addEventListener("click", () => {
+  const cleaned = cleanInstagramToList(cleaninkInput.value);
+  cleaninkOutput.value = cleaned;
+  cleaninkResultWrap.classList.remove("is-hidden");
+});
+
+btnCleaninkClear.addEventListener("click", () => {
+  cleaninkInput.value = "";
+  cleaninkOutput.value = "";
+  cleaninkResultWrap.classList.add("is-hidden");
+});
+
+// 04) FEATURES — FOLSYNC (Followers Sync)
+// ==================================================
 let followersMap = new Map();
 let followingMap = new Map();
 
-const igResults = document.getElementById("igResults");
-const igSideStat = document.getElementById("igSideStat");
-const igResultsBlock = document.getElementById("igResultsBlock");
+const folsyncResults = document.getElementById("folsyncResults");
+const folsyncSideStat = document.getElementById("folsyncSideStat");
+const folsyncResultsBlock = document.getElementById("folsyncResultsBlock");
 
 const fileFollowers = document.getElementById("fileFollowers");
 const fileFollowing = document.getElementById("fileFollowing");
@@ -501,9 +581,9 @@ async function loadFollowingFile(file) {
 }
 
 fileFollowers.addEventListener("change", async () => {
-  if (igResultsBlock) igResultsBlock.classList.add("is-hidden");
-  igResults.innerHTML = "";
-  igSideStat.textContent = "";
+  if (folsyncResultsBlock) folsyncResultsBlock.classList.add("is-hidden");
+  folsyncResults.innerHTML = "";
+  folsyncSideStat.textContent = "";
   const f = fileFollowers.files?.[0];
   if (!f) return;
   try {
@@ -515,9 +595,9 @@ fileFollowers.addEventListener("change", async () => {
 });
 
 fileFollowing.addEventListener("change", async () => {
-  if (igResultsBlock) igResultsBlock.classList.add("is-hidden");
-  igResults.innerHTML = "";
-  igSideStat.textContent = "";
+  if (folsyncResultsBlock) folsyncResultsBlock.classList.add("is-hidden");
+  folsyncResults.innerHTML = "";
+  folsyncSideStat.textContent = "";
   const f = fileFollowing.files?.[0];
   if (!f) return;
   try {
@@ -555,9 +635,9 @@ function setupDropzone(zoneId, onFile) {
     const file = e.dataTransfer?.files?.[0];
     if (!file || !/\.(html|json)$/i.test(file.name)) return;
 
-    if (igResultsBlock) igResultsBlock.classList.add("is-hidden");
-    igResults.innerHTML = "";
-    igSideStat.textContent = "";
+    if (folsyncResultsBlock) folsyncResultsBlock.classList.add("is-hidden");
+    folsyncResults.innerHTML = "";
+    folsyncSideStat.textContent = "";
     await onFile(file);
   });
 }
@@ -569,10 +649,10 @@ function ensureIgMapsLoaded() {
 }
 
 function renderIgResults(items, title) {
-  igResults.innerHTML = "";
+  folsyncResults.innerHTML = "";
 
   if (!items.length) {
-    igResults.appendChild(
+    folsyncResults.appendChild(
       renderCard({
         statusBadge: null,
         title: "Tidak ada hasil 🎉",
@@ -580,12 +660,12 @@ function renderIgResults(items, title) {
         actions: [],
       })
     );
-    igSideStat.textContent = `┆ 0 account ${title}`;
+    folsyncSideStat.textContent = `┆ 0 account ${title}`;
     return;
   }
 
   items.forEach((it) => {
-    igResults.appendChild(
+    folsyncResults.appendChild(
       renderCard({
         statusBadge: null,
         title: displayAtUsername(it.username),
@@ -598,16 +678,16 @@ function renderIgResults(items, title) {
     );
   });
 
-  igSideStat.textContent = `┆ ${items.length} ${title}`;
+  folsyncSideStat.textContent = `┆ ${items.length} ${title}`;
 }
 
 document.getElementById("btnNotFollowMe").addEventListener("click", () => {
-  if (igResultsBlock) igResultsBlock.classList.remove("is-hidden");
-  igResults.innerHTML = "";
-  igSideStat.textContent = "";
+  if (folsyncResultsBlock) folsyncResultsBlock.classList.remove("is-hidden");
+  folsyncResults.innerHTML = "";
+  folsyncSideStat.textContent = "";
 
   if (!ensureIgMapsLoaded()) {
-    igSideStat.textContent = "Upload your data to sync followers";
+    folsyncSideStat.textContent = "Upload your data to sync followers";
     return;
   }
 
@@ -620,12 +700,12 @@ document.getElementById("btnNotFollowMe").addEventListener("click", () => {
 });
 
 document.getElementById("btnINotFollow").addEventListener("click", () => {
-  if (igResultsBlock) igResultsBlock.classList.remove("is-hidden");
-  igResults.innerHTML = "";
-  igSideStat.textContent = "";
+  if (folsyncResultsBlock) folsyncResultsBlock.classList.remove("is-hidden");
+  folsyncResults.innerHTML = "";
+  folsyncSideStat.textContent = "";
 
   if (!ensureIgMapsLoaded()) {
-    igSideStat.textContent = "Upload your data to sync followers";
+    folsyncSideStat.textContent = "Upload your data to sync followers";
     return;
   }
 
@@ -637,7 +717,7 @@ document.getElementById("btnINotFollow").addEventListener("click", () => {
   renderIgResults(out, "Accounts you don't follow back");
 });
 
-document.getElementById("btnIgClear").addEventListener("click", () => {
+document.getElementById("btnFolsyncClear").addEventListener("click", () => {
   fileFollowers.value = "";
   fileFollowing.value = "";
   followersMap = new Map();
@@ -646,70 +726,7 @@ document.getElementById("btnIgClear").addEventListener("click", () => {
   setFileUI("followers", null, 0);
   setFileUI("following", null, 0);
 
-  igResults.innerHTML = "";
-  igSideStat.textContent = "";
-  if (igResultsBlock) igResultsBlock.classList.add("is-hidden");
-});
-
-function cleanInstagramToList(raw) {
-  const text = String(raw ?? "").trim();
-  if (!text) return "";
-
-  const re = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)(?:\/)?/g;
-
-  const blocked = new Set(["p", "reel", "reels", "tv", "stories", "explore", "accounts", "about"]);
-
-  const out = [];
-  const seen = new Set();
-  let m;
-
-  while ((m = re.exec(text)) !== null) {
-    const u = (m[1] || "").trim();
-    if (!u) continue;
-    if (blocked.has(u.toLowerCase())) continue;
-
-    const line = `instagram.com/${u}`;
-    const key = line.toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(line);
-  }
-
-  // Fallback: kalau user paste @username atau username per baris
-  if (out.length === 0) {
-    const lines = text.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
-    for (const l of lines) {
-      const u = l.replace(/^@/, "");
-      if (!u) continue;
-      const line = `instagram.com/${u}`;
-      const key = line.toLowerCase();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      out.push(line);
-    }
-  }
-
-  return out.join("\n");
-}
-
-const cleanerInput = document.getElementById("cleanerInput");
-const cleanerOutput = document.getElementById("cleanerOutput");
-const cleanerResultWrap = document.getElementById("cleanerResultWrap");
-
-const btnCleanerIg = document.getElementById("btnCleanerIg");
-const btnCleanerClear = document.getElementById("btnCleanerClear");
-const copyCleanerOutput = document.getElementById("copyCleanerOutput");
-
-copyCleanerOutput.onclick = () => copyText(cleanerOutput.value);
-
-btnCleanerIg.addEventListener("click", () => {
-  const cleaned = cleanInstagramToList(cleanerInput.value);
-  cleanerOutput.value = cleaned;
-  cleanerResultWrap.classList.remove("is-hidden"); 
-});
-
-btnCleanerClear.addEventListener("click", () => {
-  cleanerInput.value = "";
-  cleanerOutput.value = "";
-  cleanerResultWrap.classList.add("is-hidden");
+  folsyncResults.innerHTML = "";
+  folsyncSideStat.textContent = "";
+  if (folsyncResultsBlock) folsyncResultsBlock.classList.add("is-hidden");
 });

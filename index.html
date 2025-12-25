@@ -31,16 +31,16 @@
     </header>
 
     <nav class="tabs" role="tablist">
-      <button class="tab tab--active" data-tab="search" type="button">🔎 Batsearch</button>
-      <button class="tab" data-tab="replace" type="button">🔄 Refind</button>
-      <button class="tab" data-tab="dedupe" type="button">🗑️ Reduce</button>
-      <button class="tab" data-tab="cleaner" type="button">🧼 Cleanink</button>
-      <button class="tab" data-tab="ig" type="button">👨‍👧‍👧 Folsync</button>
+      <button class="tab tab--active" data-tab="batsearch" type="button">🔎 Batsearch</button>
+      <button class="tab" data-tab="findrep" type="button">🔄 Findrep</button>
+      <button class="tab" data-tab="redupe" type="button">🗑️ Redupe</button>
+      <button class="tab" data-tab="cleanink" type="button">🧼 Cleanink</button>
+      <button class="tab" data-tab="folsync" type="button">👨‍👧‍👧 Folsync</button>
     </nav>
 
     <main class="container">
-      <!-- TAB 1: Batch Search -->
-      <section id="tab-search" class="panel">
+      <!-- FEATURES 1: BATSEARCH (Batch Search) -->
+      <section id="tab-batsearch" class="panel">
         <div class="panel__head">
           <h2 class="panel__title">Batch Search</h2>
           <p class="panel__desc">Check for matching accounts in your list</p>
@@ -50,29 +50,29 @@
           <div class="block__head">
             <h3 class="block__title">Input Data</h3>
           </div>
-          <textarea id="searchInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
+          <textarea id="batsearchInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
         </div>
 
         <div class="cta-row">
-          <button id="btnSearch" class="btn btn--primary" type="button">Batch Searching</button>
-          <button id="btnSearchClear" class="btn btn--secondary" type="button">Clear Data</button>
+          <button id="btnBatsearch" class="btn btn--primary" type="button">Batch Searching</button>
+          <button id="btnBatsearchClear" class="btn btn--secondary" type="button">Clear Data</button>
         </div>
 
-        <div id="searchResultsBlock" class="block is-hidden">
+        <div id="batsearchResultsBlock" class="block is-hidden">
           <div class="block__head">
             <h3 class="block__title">Results</h3>
             <div class="block__meta">
-              <span id="searchStat" class="statline"></span>
+              <span id="batsearchStat" class="statline"></span>
             </div>
           </div>
-          <div id="searchResults" class="results"></div>
+          <div id="batsearchResults" class="results"></div>
         </div>
       </section>
 
-      <!-- TAB 2: Find & Replace -->
-      <section id="tab-replace" class="panel is-hidden">
+      <!-- FEATURES 2: FINDREP (Find Replace) -->
+      <section id="tab-findrep" class="panel is-hidden">
         <div class="panel__head">
-          <h2 class="panel__title">Find & Replace</h2>
+          <h2 class="panel__title">Find Replace</h2>
           <p class="panel__desc">Adjust your text with find and replace</p>
         </div>
 
@@ -88,7 +88,7 @@
 
         <div class="block">
           <div class="block__head">
-            <h3 class="block__title">Find & Replace Options</h3>
+            <h3 class="block__title">Replace Options</h3>
           </div>
 
           <div class="options-box">
@@ -124,8 +124,8 @@
         </div>
 
         <div class="cta-row">
-          <button id="btnReplace" class="btn btn--primary" type="button">Replace All Text</button>
-          <button id="btnReplaceClear" class="btn btn--secondary" type="button">Clear Data</button>
+          <button id="btnFindrep" class="btn btn--primary" type="button">Replace All Text</button>
+          <button id="btnFindrepClear" class="btn btn--secondary" type="button">Clear Data</button>
         </div>
 
         <div class="block">
@@ -139,8 +139,8 @@
         </div>
       </section>
 
-      <!-- TAB 3: Remove Duplicate -->
-      <section id="tab-dedupe" class="panel is-hidden">
+      <!-- FEATURES 3: REDUPE (Remove Duplicate) -->
+      <section id="tab-redupe" class="panel is-hidden">
         <div class="panel__head">
           <h2 class="panel__title">Remove Duplicate</h2>
           <p class="panel__desc">Clear repetitive lines for a unique list</p>
@@ -150,26 +150,26 @@
           <div class="block__head">
             <h3 class="block__title">Input Data</h3>
             <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyDedupeInput">Copy</button>
+              <button class="btn btn--secondary" type="button" id="copyredupeInput">Copy</button>
             </div>
           </div>
-          <textarea id="dedupeInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
+          <textarea id="redupeInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
         </div>
 
         <div class="block">
           <div class="block__head">
             <h3 class="block__title">Output Data</h3>
             <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyDedupeOutput">Copy</button>
+              <button class="btn btn--secondary" type="button" id="copyredupeOutput">Copy</button>
             </div>
           </div>
-          <textarea id="dedupeOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
+          <textarea id="redupeOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
         </div>
 
         <div class="cta-row">
-          <button id="btnDedupe" class="btn btn--primary" type="button">Remove Duplicate</button>
-          <button id="btnDedupeClear" class="btn btn--secondary" type="button">Clear Data</button>
-          <div class="statline" id="dedupeStat"></div>
+          <button id="btnredupe" class="btn btn--primary" type="button">Remove Duplicate</button>
+          <button id="btnredupeClear" class="btn btn--secondary" type="button">Clear Data</button>
+          <div class="statline" id="redupeStat"></div>
         </div>
 
         <div class="block">
@@ -183,8 +183,8 @@
         </div>
       </section>
 
-      <!-- TAB 4: Link Cleaner -->
-      <section id="tab-cleaner" class="panel is-hidden">
+      <!-- FEATURES 4: CLEANINK (Link Cleaner) -->
+      <section id="tab-cleanink" class="panel is-hidden">
         <div class="panel__head">
           <h2 class="panel__title">Link Cleaner</h2>
           <p class="panel__desc">Instantly clean and shorten your links</p>
@@ -195,7 +195,7 @@
             <h3 class="block__title">Input Data</h3>
           </div>
           <textarea
-            id="cleanerInput"
+            id="cleaninkInput"
             class="textarea"
             placeholder="Type or paste your data here..."
           ></textarea>
@@ -204,14 +204,14 @@
         <!-- BUTTON ROW -->
         <div class="cta-row">
           <button
-            id="btnCleanerIg"
+            id="btnCleanink"
             class="btn btn--primary"
             type="button"
           >
             Clean Link
           </button>
           <button
-            id="btnCleanerClear"
+            id="btnCleaninkClear"
             class="btn btn--secondary"
             type="button"
           >
@@ -219,12 +219,12 @@
           </button>
         </div>
 
-        <div id="cleanerResultWrap" class="block is-hidden">
+        <div id="cleaninkResultWrap" class="block is-hidden">
           <div class="block__head">
             <h3 class="block__title">Result</h3>
             <div class="block__actions">
               <button
-                id="copyCleanerOutput"
+                id="copyCleaninkOutput"
                 class="btn btn--secondary"
                 type="button"
               >
@@ -234,7 +234,7 @@
           </div>
 
           <textarea
-            id="cleanerOutput"
+            id="cleaninkOutput"
             class="textarea"
             placeholder="Results will be shown here..."
             readonly
@@ -242,10 +242,10 @@
         </div>
       </section>
 
-      <!-- TAB 5: Synchronizes Followers -->
-      <section id="tab-ig" class="panel is-hidden">
+      <!-- FEATURES 5: FOLSYNC (Followers Sync) -->
+      <section id="tab-folsync" class="panel is-hidden">
         <div class="panel__head">
-          <h2 class="panel__title">Synchronizes Followers</h2>
+          <h2 class="panel__title">Followers Sync</h2>
           <p class="panel__desc">Track and sort your followers</p>
         </div>
 
@@ -293,20 +293,20 @@
             <button id="btnINotFollow" class="btn btn--primary" type="button">
               Check Who to Follow Back
             </button>
-            <button id="btnIgClear" class="btn btn--secondary" type="button">
+            <button id="btnFolsyncClear" class="btn btn--secondary" type="button">
               Clear Data
             </button>
           </div>
         </div>
 
-        <div id="igResultsBlock" class="block is-hidden">
+        <div id="folsyncResultsBlock" class="block is-hidden">
           <div class="block__head">
             <h3 class="block__title">Results</h3>
             <div class="block__meta">
-              <span id="igSideStat" class="statline"></span>
+              <span id="folsyncSideStat" class="statline"></span>
             </div>
           </div>
-          <div id="igResults" class="results"></div>
+          <div id="folsyncResults" class="results"></div>
         </div>
       </section>
     </main>
