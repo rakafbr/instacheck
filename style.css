@@ -134,7 +134,7 @@ button {
   display:flex;
   border:1.5px solid var(--line);
   background:var(--white);
-  gap:8px;
+  gap:4px;
   padding:10px 12px;
   border-radius:12px;
   font-weight:600;
