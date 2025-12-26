@@ -23,10 +23,15 @@
 *{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Inter,system-ui,Arial,sans-serif;
-  color:var(--text);
-  background:var(--bg);
+  font-family: "Sora", system-ui, Arial, sans-serif;
+  color: var(--text);
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
 }
 
 .material-symbols-outlined{
@@ -76,25 +81,25 @@ body{
   border-radius:var(--radius);
   box-shadow:var(--shadow);
   padding:16px;
-  margin-bottom:14px;
+  margin-bottom:20px;
 }
 .is-hidden{display:none}
 
-.panel__head{margin-bottom:10px}
+.panel__head{margin-bottom:12px}
 .panel__title{margin:0 0 6px 0;font-size:16px}
 .panel__desc{margin:0;color:var(--muted);font-size:14px}
 
-.block{margin-top:20px}
+.block{margin-top:24px}
 .block__head{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:8px;
+  margin-bottom: 12px;
   flex-wrap:wrap;
-  margin-bottom:8px;
 }
 .block__title{margin:0;font-size:16px}
-.block__actions{display:flex;gap:10px;flex-wrap:wrap}
+.block__actions{display:flex;gap:26px;flex-wrap:wrap}
 .block__meta{display:flex;align-items:center}
 
 /* ==================================================
@@ -122,18 +127,21 @@ body{
   margin:0 auto;
   padding:0 20px 6px;
   display:flex;
-  gap:6px;
+  gap:8px;
   flex-wrap:wrap;
 }
 .tab{
+  display:flex;
   border:1.5px solid var(--line);
   background:var(--white);
-  padding:9px 14px;
-  border-radius:10px;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:12px;
   font-weight:600;
   font-size:14px;
   cursor:pointer;
 }
+
 .tab--active{
   background:var(--green);
   border-color:var(--green);
@@ -181,7 +189,7 @@ a.btn{text-decoration:none}
 .cta-row{
   display:flex;
   gap:8px;
-  margin-top:12px;
+  margin-top:16px;
   flex-wrap:wrap;
 }
 .cta-row--left{justify-content:flex-start}
@@ -340,7 +348,7 @@ a.btn{text-decoration:none}
   width:100%;
   border:1px solid var(--line);
   border-radius:12px;
-  padding:12px 12px;
+  padding:14px;
   background:var(--white);
   font-size:14px;
   outline:none;
@@ -348,13 +356,6 @@ a.btn{text-decoration:none}
 .input:focus{
   border-color:rgba(0,170,19,.55);
   box-shadow:0 0 0 3px rgba(0,170,19,.12);
-}
-
-.options-box{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px;
-  background:var(--white);
 }
 
 .grid-2{

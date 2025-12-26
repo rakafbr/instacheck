@@ -322,8 +322,6 @@ document.getElementById("btnFindrep").addEventListener("click", () => {
 
   const pairs = [
     { f: find1.value, r: rep1.value },
-    { f: find2.value, r: rep2.value },
-    { f: find3.value, r: rep3.value },
   ].filter((p) => p.f);
 
   let out = input;
@@ -332,15 +330,19 @@ document.getElementById("btnFindrep").addEventListener("click", () => {
     out = out.replace(new RegExp(esc, "g"), p.r ?? "");
   }
   frOutput.value = out;
+
+  findrepOutputWrap.classList.remove("is-hidden");
 });
 
 document.getElementById("btnFindrepClear").addEventListener("click", () => {
   frInput.value = "";
   frOutput.value = "";
   find1.value = rep1.value = "";
-  find2.value = rep2.value = "";
-  find3.value = rep3.value = "";
+
+  findrepOutputWrap.classList.add("is-hidden");
 });
+
+const findrepOutputWrap = document.getElementById("findrepOutputWrap");
 
 copyFrInput.onclick = () => copyText(frInput.value);
 copyFrOutput.onclick = () => copyText(frOutput.value);
@@ -364,13 +366,22 @@ document.getElementById("btnredupe").addEventListener("click", () => {
   redupeOutput.value = unique.join("\n");
   removedData.value = removed.join("\n");
   redupeStat.textContent = `${lines.length} Original ┆ ${removed.length} Removed ┆ ${unique.length} Remaining`;
+
+  redupeOutputWrap.classList.remove("is-hidden");
+  removedDataWrap.classList.remove("is-hidden");
 });
+
+const redupeOutputWrap = document.getElementById("redupeOutputWrap");
+const removedDataWrap = document.getElementById("removedDataWrap");
 
 btnredupeClear.onclick = () => {
   redupeInput.value = "";
   redupeOutput.value = "";
   removedData.value = "";
   redupeStat.textContent = "";
+
+  redupeOutputWrap.classList.add("is-hidden");
+  removedDataWrap.classList.add("is-hidden");
 };
 
 copyredupeInput.onclick = () => copyText(redupeInput.value);
@@ -425,6 +436,7 @@ const cleaninkOutput = document.getElementById("cleaninkOutput");
 const cleaninkResultWrap = document.getElementById("cleaninkResultWrap");
 
 const btnCleanink = document.getElementById("btnCleanink");
+const btnKeeplink = document.getElementById("btnKeeplink");
 const btnCleaninkClear = document.getElementById("btnCleaninkClear");
 const copyCleaninkOutput = document.getElementById("copyCleaninkOutput");
 
@@ -433,6 +445,16 @@ copyCleaninkOutput.onclick = () => copyText(cleaninkOutput.value);
 btnCleanink.addEventListener("click", () => {
   const cleaned = cleanInstagramToList(cleaninkInput.value);
   cleaninkOutput.value = cleaned;
+  cleaninkResultWrap.classList.remove("is-hidden");
+});
+
+btnKeeplink?.addEventListener("click", () => {
+  const lines = (cleaninkInput?.value || "")
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => /^instagram\.com\/\S+$/i.test(l));
+
+  cleaninkOutput.value = lines.join("\n");
   cleaninkResultWrap.classList.remove("is-hidden");
 });
 
