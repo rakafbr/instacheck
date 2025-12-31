@@ -1,18 +1,96 @@
 /* ==================== DESIGN TOKENS ==================== */
+/* ---------- LIGHT MODE ---------- */
 :root{
-  --green:#00AA13;
-  --dark-green:#008E10;
-  --light-green-1:#F1FFF3;
-  --light-green-2:#CFF3D4;
-  --white:#FFFFFF;
-  --bg:#F5F7F8;
-  --text:#111827;
-  --muted:#6B7280;
-  --line:#E5E7EB;
-  --soft:#F9FAFB;
+  /* Brand */
+  --color-brand-100:#F4FBF5;
+  --color-brand-300:#D5F3D8;
+  --color-brand-500:#0bb24b;
+  --color-brand-700:#05993c;
+  --color-brand-900:#0b6b35;
+
+  /* Background / Surfaces */
+  --color-bg:#F5F7F8;
+  --color-bg-soft:#F9FAFB;
+  --color-surface:#ffffff;
+  --color-surface-tint:#eef6ef;
+  --color-surface-glass:rgba(255,255,255,0.6);
+  --color-surface-glass-strong:rgba(255,255,255,0.95);
+
+  /* Text */
+  --color-text:#111827;
+  --color-text-strong:#032a16;
+  --color-text-muted:#6b7280;
+
+  /* Borders */
+  --color-border:#E5E7EB;
+  --color-border-subtle:rgba(0,0,0,0.06);
+
+  /* Danger */
   --danger:#DC2626;
-  --shadow:0 10px 28px rgba(0,0,0,.08);
-  --radius:16px;
+
+  /* Effects */
+  --shadow-brand:0 6px 18px rgba(11,178,75,0.08);
+  --shadow-xs:0 2px 6px rgba(0,0,0,0.04);
+  --shadow-sm:0 2px 6px rgba(0,0,0,0.06);
+  --shadow-md:0px 3px 12px rgba(0,0,0,0.10);
+  --shadow-xl:0 20px 60px rgba(0,0,0,0.18);
+  --radius-lg:16px;
+  --focus-ring:4px solid rgba(11,178,75,0.15);
+  --color-overlay-scrim:rgba(0,0,0,0.35);
+
+  /* Layout */
+  --layout-max-width:1100px;
+
+  /* Typography */
+  --font-sans:"Sora", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  color-scheme:light;
+}
+
+/* ---------- DARK MODE ---------- */
+[data-theme="dark"]{
+  /* Brand */
+  --color-brand-500:#0bb24b;
+  --color-brand-700:#19c25c;
+  --color-brand-900:#6ee7a8;
+
+  /* Background / Surfaces */
+  --color-bg:#0b1220;
+  --color-bg-soft:#0f1a2b;
+  --color-surface:#111a2c;
+  --color-surface-tint:#0f2a1a;
+  --color-surface-glass:rgba(17,26,44,0.60);
+  --color-surface-glass-strong:rgba(17,26,44,0.92);
+
+  /* Text */
+  --color-text:#f9fafb;
+  --color-text-strong:#d1fae5;
+  --color-text-muted:#a5b4c7;
+
+  /* Borders */
+  --color-border:#223049;
+  --color-border-subtle:rgba(255,255,255,0.10);
+
+  /* Danger */
+  --danger:#DC2626;
+
+  /* Effects */
+  --shadow-brand:0 10px 26px rgba(0,0,0,0.40);
+  --shadow-xs:0 2px 8px rgba(0,0,0,0.35);
+  --shadow-sm:0 4px 12px rgba(0,0,0,0.40);
+  --shadow-md:0 10px 24px rgba(0,0,0,0.45);
+  --shadow-xl:0 24px 70px rgba(0,0,0,0.55);
+  --radius-lg:16px;
+  --focus-ring:4px solid rgba(11,178,75,0.30);
+  --color-overlay-scrim:rgba(0,0,0,0.55);
+
+  /* Layout */
+  --layout-max-width:1100px;
+
+  /* Typography */
+  --font-sans:"Sora", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  color-scheme:dark;
 }
 
 /* ==================== BASE ==================== */
@@ -20,7 +98,7 @@
 
 body{
   font-family: "Sora", system-ui, Arial, sans-serif;
-  color: var(--text);
+  color: var(--color-text);
 }
 
 input,
@@ -61,17 +139,17 @@ button {
   line-height:1.2;
   padding-bottom:4px;
 }
-.brand__sub{font-size:14px;color:var(--muted)}
+.brand__sub{font-size:14px;color:var(--color-text-muted)}
 
 .dataset{display:flex;align-items:center;gap:4px}
-.dataset__label{font-size:14px;color:var(--muted)}
+.dataset__label{font-size:14px;color:var(--color-text-muted)}
 
 /* ==================== LAYOUT - PANEL ==================== */
 .panel{
-  background:var(--white);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
+  background:var(--color-surface);
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-xl);
   padding:16px;
   margin-bottom:20px;
 }
@@ -79,7 +157,7 @@ button {
 
 .panel__head{margin-bottom:12px}
 .panel__title{margin:0 0 6px 0;font-size:16px}
-.panel__desc{margin:0;color:var(--muted);font-size:14px}
+.panel__desc{margin:0;color:var(--color-text-muted);font-size:14px}
 
 .block{margin-top:24px}
 .block__head{
@@ -103,11 +181,11 @@ button {
   border-radius:999px;
   font-size:14px;
   font-weight:600;
-  border:1px solid var(--line);
-  background:var(--white);
+  border:1px solid var(--color-border);
+  background:var(--color-surface);
 }
-.pill--ok{color:var(--green);border-color:var(--light-green-2);background:var(--light-green-1)}
-.pill--muted{color:var(--muted)}
+.pill--ok{color:var(--color-brand-500);border-color:var(--color-brand-500);background:var(--color-brand-100)}
+.pill--color-text-muted{color:var(--color-text-muted)}
 
 /* ==================== COMPONENTS - TAB ==================== */
 .tabs{
@@ -120,8 +198,8 @@ button {
 }
 .tab{
   display:flex;
-  border:1.5px solid var(--line);
-  background:var(--white);
+  border:1.5px solid var(--color-border);
+  background:var(--color-surface);
   gap:4px;
   padding:10px 12px;
   border-radius:12px;
@@ -131,9 +209,9 @@ button {
 }
 
 .tab--active{
-  background:var(--green);
-  border-color:var(--green);
-  color:var(--white);
+  background:var(--color-brand-500);
+  border-color:var(--color-brand-500);
+  color:var(--color-surface);
 }
 
 /* ==================== COMPONENT - BUTTON ==================== */
@@ -144,27 +222,27 @@ button {
   font-size:14px;
   cursor:pointer;
   border:1.5px solid transparent;
-  background:var(--white);
+  background:var(--color-surface);
 }
 
 .btn--primary{
-  background:var(--green);
-  color:var(--white);
-  border-color:var(--green);
+  background:var(--color-brand-500);
+  color:var(--color-surface);
+  border-color:var(--color-brand-500);
 }
 .btn--primary:hover{
-  background:var(--dark-green);
-  border-color:var(--dark-green);
+  background:var(--color-brand-900);
+  border-color:var(--color-brand-900);
 }
 
 .btn--secondary{
-  background:var(--white);
-  color:var(--green);
+  background:var(--color-surface);
+  color:var(--color-brand-500);
   border-color:rgba(0,170,19,.45);
 }
 .btn--secondary:hover{
-  border-color:var(--green);
-  background:var(--light-green-1);
+  border-color:var(--color-brand-500);
+  background:var(--color-brand-100);
 }
 
 .btn--wide{flex:1;min-width:200px}
@@ -187,10 +265,10 @@ a.btn{text-decoration:none}
   right:16px;
   z-index:9999;
   width:auto;
-  border:1px solid var(--line);
-  background:var(--white);
+  border:1px solid var(--color-border);
+  background:var(--color-surface);
   border-radius:10px;
-  box-shadow:var(--shadow);
+  box-shadow:var(--shadow-md);
   padding:10px 12px;
   display:none;
 }
@@ -206,7 +284,7 @@ a.btn{text-decoration:none}
 .toast__text{
   font-size:12px;
   font-weight:600;
-  color:var(--text);
+  color:var(--color-text);
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
@@ -215,7 +293,7 @@ a.btn{text-decoration:none}
   border:0;
   background:transparent;
   cursor:pointer;
-  color:var(--muted);
+  color:var(--color-text-muted);
   font-size:14px;
   padding:0;
 }
@@ -242,7 +320,7 @@ a.btn{text-decoration:none}
 /* ==================== COMPONENT - DROPBOX ==================== */
 .dropbox{
   border:1px dashed rgba(0,0,0,.18);
-  background:var(--white);
+  background:var(--color-surface);
   border-radius:14px;
   padding:12px;
   transition: box-shadow .15s ease, border-color .15s ease;
@@ -253,7 +331,7 @@ a.btn{text-decoration:none}
 }
 .dropbox__label{
   font-size:12px;
-  color:var(--muted);
+  color:var(--color-text-muted);
   font-weight:800;
   margin-bottom:10px;
 }
@@ -277,24 +355,24 @@ a.btn{text-decoration:none}
   text-overflow:ellipsis;
   white-space:nowrap;
 }
-.dropbox__count{font-size:12px;color:var(--muted)}
+.dropbox__count{font-size:12px;color:var(--color-text-muted)}
 .dropbox__input{display:none}
 .dropbox__hint{
   margin-top:10px;
   font-size:12px;
-  color:var(--muted);
+  color:var(--color-text-muted);
 }
 
 /* ==================== COMPONENT - FORM ==================== */
-.label{font-size:12px;color:var(--muted);font-weight:700}
+.label{font-size:12px;color:var(--color-text-muted);font-weight:700}
 
 .textarea{
   width:100%;
   min-height:160px;
-  border:1px solid var(--line);
+  border:1px solid var(--color-border);
   border-radius:14px;
   padding:14px;
-  background:var(--white);
+  background:var(--color-surface);
   font-size:14px;
   line-height:150%;
   outline:none;
@@ -307,10 +385,10 @@ a.btn{text-decoration:none}
 
 .input{
   width:100%;
-  border:1px solid var(--line);
+  border:1px solid var(--color-border);
   border-radius:12px;
   padding:14px;
-  background:var(--white);
+  background:var(--color-surface);
   font-size:14px;
   outline:none;
 }
@@ -331,7 +409,7 @@ a.btn{text-decoration:none}
   margin:10px 2px 2px;
   font-size:14px;
   font-weight:400;
-  color:var(--muted);
+  color:var(--color-text-muted);
   text-align:right;
   white-space:nowrap;
   flex-grow:1;
@@ -344,9 +422,9 @@ a.btn{text-decoration:none}
 }
 
 .card{
-  border:1px solid var(--line);
+  border:1px solid var(--color-border);
   border-radius:14px;
-  background:var(--soft);
+  background:var(--color-bg-soft);
   padding:12px 14px;
   display:flex;
   align-items:center;
@@ -372,7 +450,7 @@ a.btn{text-decoration:none}
 }
 .card__sub{
   font-size:12px;
-  color:var(--muted);
+  color:var(--color-text-muted);
   word-break:break-word;
 }
 .card__actions{
@@ -388,10 +466,10 @@ a.btn{text-decoration:none}
   display:flex;
   align-items:center;
   justify-content:center;
-  color:var(--white);
+  color:var(--color-surface);
   flex-shrink:0;
 }
-.badge--ok{background:var(--green)}
+.badge--ok{background:var(--color-brand-500)}
 .badge--no{background:var(--danger)}
 
 /* ==================== RESPONSIVE ==================== */
