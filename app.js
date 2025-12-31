@@ -18,7 +18,7 @@ tabs.forEach((t) => {
   });
 });
 
-const TOAST_MS = 2000;
+const TOAST_MS = 1000;
 let toastTimer = null;
 
 function ensureToast() {
@@ -30,19 +30,13 @@ function ensureToast() {
   el.className = "toast";
   el.innerHTML = `
     <div class="toast__row">
-      <div class="toast__left">
-        <div class="toast__iconbox">
-          <span class="material-symbols-outlined">content_copy</span>
-        </div>
-        <div class="toast__text" id="toastText">Text copied to clipboard</div>
-      </div>
-      <button class="toast__x" id="toastX" type="button">✕</button>
+      <div class="toast__text" id="toastText">Text copied to clipboard</div>
     </div>
-    <div class="toast__bar"><div class="toast__fill" id="toastFill"></div></div>
+    <div class="toast__bar">
+      <div class="toast__fill" id="toastFill"></div>
+    </div>
   `;
   document.body.appendChild(el);
-
-  document.getElementById("toastX").addEventListener("click", hideToast);
   return el;
 }
 
