@@ -18,7 +18,7 @@ tabs.forEach((t) => {
   });
 });
 
-const TOAST_MS = 1000;
+const TOAST_MS = 1250;
 let toastTimer = null;
 
 function ensureToast() {
