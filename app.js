@@ -1,5 +1,4 @@
-// 01) CORE
-// ==================================================
+// ==================== CORE ==================== //
 const tabs = document.querySelectorAll(".tab");
 const sections = {
   batsearch: document.getElementById("tab-batsearch"),
@@ -65,8 +64,7 @@ function hideToast() {
   toastTimer = null;
 }
 
-// 02) UTILS
-// ==================================================
+// ==================== UTILS ==================== //
 function normalize(v) {
   return String(v ?? "")
     .trim()
@@ -117,7 +115,6 @@ async function copyText(text) {
   }
 }
 
-// ==================================================
 function isInstagramLike(input) {
   const s = String(input ?? "").toLowerCase();
   return (
@@ -155,8 +152,7 @@ function directIgUrl(usernameOrLink) {
   return u ? `https://www.instagram.com/${u}/` : "https://www.instagram.com/";
 }
 
-// 03) USER INTERFACE
-// ==================================================
+// ==================== USER INTERFACE ==================== //
 let DATASET_MAP = new Map();
 
 async function loadDataset() {
@@ -243,8 +239,7 @@ function renderCard({ statusBadge, title, sub, actions = [] }) {
   return card;
 }
 
-// 04) FEATURES — BATSEARCH (Batch Search)
-// ==================================================
+// ==================== FEATURES - BATCH SEARCH ==================== //
 const searchResults = document.getElementById("batsearchResults");
 const searchStat = document.getElementById("batsearchStat");
 const searchResultsBlock = document.getElementById("batsearchResultsBlock");
@@ -309,8 +304,7 @@ function runSearch() {
   searchStat.textContent = `${match} Account match ┆ ${notMatch} Account not match`;
 }
 
-// 04) FEATURES — FINDREP (Find Replace)
-// ==================================================
+// ==================== FEATURES - FIND REPLACE ==================== //
 document.getElementById("btnFindrep").addEventListener("click", () => {
   const input = document.getElementById("frInput").value;
 
@@ -341,8 +335,7 @@ const findrepOutputWrap = document.getElementById("findrepOutputWrap");
 copyFrInput.onclick = () => copyText(frInput.value);
 copyFrOutput.onclick = () => copyText(frOutput.value);
 
-// 04) FEATURES — REDUPE (Remove Duplicate)
-// ==================================================
+// ==================== FEATURES - REMOVE DUPLICATE ==================== //
 document.getElementById("btnredupe").addEventListener("click", () => {
   const lines = getLinesFromTextarea("redupeInput");
   const seen = new Set();
@@ -382,8 +375,7 @@ copyredupeInput.onclick = () => copyText(redupeInput.value);
 copyredupeOutput.onclick = () => copyText(redupeOutput.value);
 copyRemovedData.onclick = () => copyText(removedData.value);
 
-// 04) FEATURES — CLEANINK (Link Cleaner)
-// ==================================================
+// ==================== FEATURES - LINK CLEANER ==================== //
 function cleanInstagramToList(raw) {
 
   const text = String(raw ?? "").trim();
@@ -458,8 +450,7 @@ btnCleaninkClear.addEventListener("click", () => {
   cleaninkResultWrap.classList.add("is-hidden");
 });
 
-// 04) FEATURES — FOLSYNC (Followers Sync)
-// ==================================================
+// ==================== FEATURES - FOLLOWERS SYNC ==================== //
 let followersMap = new Map();
 let followingMap = new Map();
 

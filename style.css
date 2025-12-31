@@ -1,6 +1,4 @@
-/* ==================================================
-   DESIGN TOKENS
-   ================================================== */
+/* ==================== DESIGN TOKENS ==================== */
 :root{
   --green:#00AA13;
   --dark-green:#008E10;
@@ -17,9 +15,7 @@
   --radius:16px;
 }
 
-/* ==================================================
-   BASE
-   ================================================== */
+/* ==================== BASE ==================== */
 *{box-sizing:border-box}
 
 body{
@@ -40,9 +36,7 @@ button {
   line-height:1;
 }
 
-/* ==================================================
-   LAYOUT - HEAD
-   ================================================== */
+/* ==================== LAYOUT - HEAD ==================== */
 .app{min-height:100vh}
 
 .container{
@@ -72,9 +66,7 @@ button {
 .dataset{display:flex;align-items:center;gap:4px}
 .dataset__label{font-size:14px;color:var(--muted)}
 
-/* ==================================================
-   LAYOUT - PANEL
-   ================================================== */
+/* ==================== LAYOUT - PANEL ==================== */
 .panel{
   background:var(--white);
   border:1px solid var(--line);
@@ -102,9 +94,7 @@ button {
 .block__actions{display:flex;gap:26px;flex-wrap:wrap}
 .block__meta{display:flex;align-items:center}
 
-/* ==================================================
-   COMPONENTS - PILL
-   ================================================== */
+/* ==================== COMPONENTS - PILL ==================== */
 .pill{
   display:inline-flex;
   align-items:center;
@@ -119,9 +109,7 @@ button {
 .pill--ok{color:var(--green);border-color:var(--light-green-2);background:var(--light-green-1)}
 .pill--muted{color:var(--muted)}
 
-/* ==================================================
-   COMPONENTS - TAB
-   ================================================== */
+/* ==================== COMPONENTS - TAB ==================== */
 .tabs{
   max-width:980px;
   margin:0 auto;
@@ -148,9 +136,7 @@ button {
   color:var(--white);
 }
 
-/* ==================================================
-   COMPONENTS - BUTTON
-   ================================================== */
+/* ==================== COMPONENT - BUTTON ==================== */
 .btn{
   border-radius:100px;
   padding:10px 14px;
@@ -194,9 +180,7 @@ a.btn{text-decoration:none}
 }
 .cta-row--left{justify-content:flex-start}
 
-/* ==================================================
-   COMPONENTS - TOAST
-   ================================================== */
+/* ==================== COMPONENT - TOAST ==================== */
 .toast{
   position:fixed;
   top:16px;
@@ -255,9 +239,7 @@ a.btn{text-decoration:none}
   transform:scaleX(1);
 }
 
-/* ==================================================
-   COMPONENTS - DROPBOX
-   ================================================== */
+/* ==================== COMPONENT - DROPBOX ==================== */
 .dropbox{
   border:1px dashed rgba(0,0,0,.18);
   background:var(--white);
@@ -303,9 +285,7 @@ a.btn{text-decoration:none}
   color:var(--muted);
 }
 
-/* ==================================================
-   FORMS
-   ================================================== */
+/* ==================== COMPONENT - FORM ==================== */
 .label{font-size:12px;color:var(--muted);font-weight:700}
 
 .textarea{
@@ -346,9 +326,7 @@ a.btn{text-decoration:none}
 }
 .fr-row{display:flex;flex-direction:column;gap:6px}
 
-/* ==================================================
-   FEEDBACK
-   ================================================== */
+/* ==================== FEEDBACK ==================== */
 .statline{
   margin:10px 2px 2px;
   font-size:14px;
@@ -416,9 +394,7 @@ a.btn{text-decoration:none}
 .badge--ok{background:var(--green)}
 .badge--no{background:var(--danger)}
 
-/* ==================================================
-   RESPONSIVE
-   ================================================== */
+/* ==================== RESPONSIVE ==================== */
 @media (max-width:760px){
   .btn--wide{min-width:160px}
   .grid-2{grid-template-columns:1fr}
