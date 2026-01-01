@@ -199,8 +199,8 @@ function renderCard({ statusBadge, title, sub, actions = [] }) {
     }`;
     badge.innerHTML =
       statusBadge === "ok"
-        ? `<span class="material-symbols-outlined">check</span>`
-        : `<span class="material-symbols-outlined">close</span>`;
+        ? `<span class="material-symbols-outlined result-icon">check</span>`
+        : `<span class="material-symbols-outlined result-icon">close</span>`;
     left.appendChild(badge);
   }
 

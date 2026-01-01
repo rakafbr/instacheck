@@ -475,6 +475,12 @@ textarea::placeholder {
   flex-shrink:0;
 }
 
+.result-icon{
+  font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 20;
+  font-size:16px;
+  line-height:1;
+}
+
 .badge{
   width:24px;
   height:24px;
