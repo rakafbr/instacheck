@@ -191,7 +191,7 @@ body{
   border:var(--border) var(--color-border);
   background:var(--color-surface);
 }
-.pill--ok{color:var(--color-brand-500); border-color:var(--color-brand-500) ; background:var(--color-brand-100)}
+.pill--ok{color:var(--color-brand-500); border-color:var(--color-brand-500); background:var(--color-brand-100)}
 .pill--color-text-muted{color:var(--color-text-muted)}
 
 /* ==================== COMPONENTS - TAB ==================== */
