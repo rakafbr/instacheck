@@ -261,7 +261,7 @@ function runSearch() {
   searchResults.innerHTML = "";
 
   if (!inputs.length) {
-    searchStat.textContent = "Tidak ada input.";
+    searchStat.textContent = "Oops! Looks like your input field is still empty 😅";
     return;
   }
 
@@ -694,7 +694,8 @@ document.getElementById("btnNotFollowMe").addEventListener("click", () => {
   folsyncSideStat.textContent = "";
 
   if (!ensureIgMapsLoaded()) {
-    folsyncSideStat.textContent = "Upload your data to sync followers";
+    folsyncSideStat.textContent =
+      "Start by uploading your data to unlock your followers list 😉";
     return;
   }
 
@@ -712,7 +713,8 @@ document.getElementById("btnINotFollow").addEventListener("click", () => {
   folsyncSideStat.textContent = "";
 
   if (!ensureIgMapsLoaded()) {
-    folsyncSideStat.textContent = "Upload your data to sync followers";
+    folsyncSideStat.textContent =
+      "Start by uploading your data to unlock your followers list 😉";
     return;
   }
 
