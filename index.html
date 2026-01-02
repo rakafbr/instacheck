@@ -69,99 +69,7 @@
         </div>
       </section>
 
-      <!-- FEATURES 2: FIND REPLACE -->
-      <section id="tab-findrep" class="panel is-hidden">
-        <div class="panel__head">
-          <h2 class="panel__title">Find Replace</h2>
-          <p class="panel__desc">Adjust your text with find and replace</p>
-        </div>
-
-        <div class="block">
-          <div class="block__head">
-            <h3 class="block__title">Input Data</h3>
-            <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyFrInput">Copy</button>
-            </div>
-          </div>
-          <textarea id="frInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
-        </div>
-
-        <div class="block">
-          <div class="block__head">
-            <h3 class="block__title">Replace Text</h3>
-          </div>
-
-          <div class="grid-2">
-            <div class="fr-row">
-              <input id="find1" class="input" placeholder="Find this text" />
-            </div>
-            <div class="fr-row">
-              <input id="rep1" class="input" placeholder="Replace with this text" />
-            </div>
-          </div>
-        </div>
-
-        <div class="cta-row">
-          <button id="btnFindrep" class="btn btn--primary" type="button">Replace All Text</button>
-          <button id="btnFindrepClear" class="btn btn--secondary" type="button">Clear Data</button>
-        </div>
-
-        <div class="block is-hidden" id="findrepOutputWrap">
-          <div class="block__head">
-            <h3 class="block__title">Output Data</h3>
-            <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyFrOutput">Copy</button>
-            </div>
-          </div>
-          <textarea id="frOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
-        </div>
-      </section>
-
-      <!-- FEATURES 3: REMOVE DUPLICATE -->
-      <section id="tab-redupe" class="panel is-hidden">
-        <div class="panel__head">
-          <h2 class="panel__title">Remove Duplicate</h2>
-          <p class="panel__desc">Clear repetitive lines for a unique list</p>
-        </div>
-
-        <div class="block">
-          <div class="block__head">
-            <h3 class="block__title">Input Data</h3>
-            <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyredupeInput">Copy</button>
-            </div>
-          </div>
-          <textarea id="redupeInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
-        </div>
-
-        <div class="block is-hidden" id="redupeOutputWrap">
-          <div class="block__head">
-            <h3 class="block__title">Output Data</h3>
-            <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyredupeOutput">Copy</button>
-            </div>
-          </div>
-          <textarea id="redupeOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
-        </div>
-
-        <div class="cta-row">
-          <button id="btnredupe" class="btn btn--primary" type="button">Remove Duplicate</button>
-          <button id="btnredupeClear" class="btn btn--secondary" type="button">Clear Data</button>
-          <div class="statline" id="redupeStat"></div>
-        </div>
-
-        <div class="block is-hidden" id="removedDataWrap">
-          <div class="block__head">
-            <h3 class="block__title">Removed Data</h3>
-            <div class="block__actions">
-              <button class="btn btn--secondary" type="button" id="copyRemovedData">Copy</button>
-            </div>
-          </div>
-          <textarea id="removedData" class="textarea" placeholder="Removed duplicates will appear here..."></textarea>
-        </div>
-      </section>
-
-      <!-- FEATURES 4: LINK CLEANER -->
+      <!-- FEATURES 2: LINK CLEANER -->
       <section id="tab-cleanink" class="panel is-hidden">
         <div class="panel__head">
           <h2 class="panel__title">Link Cleaner</h2>
@@ -226,6 +134,98 @@
         </div>
       </section>
 
+      <!-- FEATURES 3: REMOVE DUPLICATE -->
+      <section id="tab-redupe" class="panel is-hidden">
+        <div class="panel__head">
+          <h2 class="panel__title">Remove Duplicate</h2>
+          <p class="panel__desc">Clear repetitive lines for a unique list</p>
+        </div>
+
+        <div class="block">
+          <div class="block__head">
+            <h3 class="block__title">Input Data</h3>
+            <div class="block__actions">
+              <button class="btn btn--secondary" type="button" id="copyredupeInput">Copy</button>
+            </div>
+          </div>
+          <textarea id="redupeInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
+        </div>
+
+        <div class="block is-hidden" id="redupeOutputWrap">
+          <div class="block__head">
+            <h3 class="block__title">Output Data</h3>
+            <div class="block__actions">
+              <button class="btn btn--secondary" type="button" id="copyredupeOutput">Copy</button>
+            </div>
+          </div>
+          <textarea id="redupeOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
+        </div>
+
+        <div class="cta-row">
+          <button id="btnredupe" class="btn btn--primary" type="button">Remove Duplicate</button>
+          <button id="btnredupeClear" class="btn btn--secondary" type="button">Clear Data</button>
+          <div class="statline" id="redupeStat"></div>
+        </div>
+
+        <div class="block is-hidden" id="removedDataWrap">
+          <div class="block__head">
+            <h3 class="block__title">Removed Data</h3>
+            <div class="block__actions">
+              <button class="btn btn--secondary" type="button" id="copyRemovedData">Copy</button>
+            </div>
+          </div>
+          <textarea id="removedData" class="textarea" placeholder="Removed duplicates will appear here..."></textarea>
+        </div>
+      </section>
+
+      <!-- FEATURES 4: FIND REPLACE -->
+      <section id="tab-findrep" class="panel is-hidden">
+        <div class="panel__head">
+          <h2 class="panel__title">Find Replace</h2>
+          <p class="panel__desc">Adjust your text with find and replace</p>
+        </div>
+
+        <div class="block">
+          <div class="block__head">
+            <h3 class="block__title">Input Data</h3>
+            <div class="block__actions">
+              <button class="btn btn--secondary" type="button" id="copyFrInput">Copy</button>
+            </div>
+          </div>
+          <textarea id="frInput" class="textarea" placeholder="Type or paste your data here..."></textarea>
+        </div>
+
+        <div class="block">
+          <div class="block__head">
+            <h3 class="block__title">Replace Text</h3>
+          </div>
+
+          <div class="grid-2">
+            <div class="fr-row">
+              <input id="find1" class="input" placeholder="Find this text" />
+            </div>
+            <div class="fr-row">
+              <input id="rep1" class="input" placeholder="Replace with this text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <button id="btnFindrep" class="btn btn--primary" type="button">Replace All Text</button>
+          <button id="btnFindrepClear" class="btn btn--secondary" type="button">Clear Data</button>
+        </div>
+
+        <div class="block is-hidden" id="findrepOutputWrap">
+          <div class="block__head">
+            <h3 class="block__title">Output Data</h3>
+            <div class="block__actions">
+              <button class="btn btn--secondary" type="button" id="copyFrOutput">Copy</button>
+            </div>
+          </div>
+          <textarea id="frOutput" class="textarea" placeholder="Results will be shown here..."></textarea>
+        </div>
+      </section>
+      
       <!-- FEATURES 5: FOLLOWERS SYNC -->
       <section id="tab-folsync" class="panel is-hidden">
         <div class="panel__head">

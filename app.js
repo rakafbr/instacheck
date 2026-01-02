@@ -304,77 +304,6 @@ function runSearch() {
   searchStat.textContent = `${match} Account match ┆ ${notMatch} Account not match`;
 }
 
-// ==================== FEATURES - FIND REPLACE ==================== //
-document.getElementById("btnFindrep").addEventListener("click", () => {
-  const input = document.getElementById("frInput").value;
-
-  const pairs = [
-    { f: find1.value, r: rep1.value },
-  ].filter((p) => p.f);
-
-  let out = input;
-  for (const p of pairs) {
-    const esc = p.f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    out = out.replace(new RegExp(esc, "g"), p.r ?? "");
-  }
-  frOutput.value = out;
-
-  findrepOutputWrap.classList.remove("is-hidden");
-});
-
-document.getElementById("btnFindrepClear").addEventListener("click", () => {
-  frInput.value = "";
-  frOutput.value = "";
-  find1.value = rep1.value = "";
-
-  findrepOutputWrap.classList.add("is-hidden");
-});
-
-const findrepOutputWrap = document.getElementById("findrepOutputWrap");
-
-copyFrInput.onclick = () => copyText(frInput.value);
-copyFrOutput.onclick = () => copyText(frOutput.value);
-
-// ==================== FEATURES - REMOVE DUPLICATE ==================== //
-document.getElementById("btnredupe").addEventListener("click", () => {
-  const lines = getLinesFromTextarea("redupeInput");
-  const seen = new Set();
-  const unique = [];
-  const removed = [];
-
-  for (const l of lines) {
-    if (seen.has(l)) removed.push(l);
-    else {
-      seen.add(l);
-      unique.push(l);
-    }
-  }
-
-  redupeOutput.value = unique.join("\n");
-  removedData.value = removed.join("\n");
-  redupeStat.textContent = `${lines.length} Original ┆ ${removed.length} Removed ┆ ${unique.length} Remaining`;
-
-  redupeOutputWrap.classList.remove("is-hidden");
-  removedDataWrap.classList.remove("is-hidden");
-});
-
-const redupeOutputWrap = document.getElementById("redupeOutputWrap");
-const removedDataWrap = document.getElementById("removedDataWrap");
-
-btnredupeClear.onclick = () => {
-  redupeInput.value = "";
-  redupeOutput.value = "";
-  removedData.value = "";
-  redupeStat.textContent = "";
-
-  redupeOutputWrap.classList.add("is-hidden");
-  removedDataWrap.classList.add("is-hidden");
-};
-
-copyredupeInput.onclick = () => copyText(redupeInput.value);
-copyredupeOutput.onclick = () => copyText(redupeOutput.value);
-copyRemovedData.onclick = () => copyText(removedData.value);
-
 // ==================== FEATURES - LINK CLEANER ==================== //
 function cleanInstagramToList(raw) {
 
@@ -449,6 +378,77 @@ btnCleaninkClear.addEventListener("click", () => {
   cleaninkOutput.value = "";
   cleaninkResultWrap.classList.add("is-hidden");
 });
+
+// ==================== FEATURES - REMOVE DUPLICATE ==================== //
+document.getElementById("btnredupe").addEventListener("click", () => {
+  const lines = getLinesFromTextarea("redupeInput");
+  const seen = new Set();
+  const unique = [];
+  const removed = [];
+
+  for (const l of lines) {
+    if (seen.has(l)) removed.push(l);
+    else {
+      seen.add(l);
+      unique.push(l);
+    }
+  }
+
+  redupeOutput.value = unique.join("\n");
+  removedData.value = removed.join("\n");
+  redupeStat.textContent = `${lines.length} Original ┆ ${removed.length} Removed ┆ ${unique.length} Remaining`;
+
+  redupeOutputWrap.classList.remove("is-hidden");
+  removedDataWrap.classList.remove("is-hidden");
+});
+
+const redupeOutputWrap = document.getElementById("redupeOutputWrap");
+const removedDataWrap = document.getElementById("removedDataWrap");
+
+btnredupeClear.onclick = () => {
+  redupeInput.value = "";
+  redupeOutput.value = "";
+  removedData.value = "";
+  redupeStat.textContent = "";
+
+  redupeOutputWrap.classList.add("is-hidden");
+  removedDataWrap.classList.add("is-hidden");
+};
+
+copyredupeInput.onclick = () => copyText(redupeInput.value);
+copyredupeOutput.onclick = () => copyText(redupeOutput.value);
+copyRemovedData.onclick = () => copyText(removedData.value);
+
+// ==================== FEATURES - FIND REPLACE ==================== //
+document.getElementById("btnFindrep").addEventListener("click", () => {
+  const input = document.getElementById("frInput").value;
+
+  const pairs = [
+    { f: find1.value, r: rep1.value },
+  ].filter((p) => p.f);
+
+  let out = input;
+  for (const p of pairs) {
+    const esc = p.f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    out = out.replace(new RegExp(esc, "g"), p.r ?? "");
+  }
+  frOutput.value = out;
+
+  findrepOutputWrap.classList.remove("is-hidden");
+});
+
+document.getElementById("btnFindrepClear").addEventListener("click", () => {
+  frInput.value = "";
+  frOutput.value = "";
+  find1.value = rep1.value = "";
+
+  findrepOutputWrap.classList.add("is-hidden");
+});
+
+const findrepOutputWrap = document.getElementById("findrepOutputWrap");
+
+copyFrInput.onclick = () => copyText(frInput.value);
+copyFrOutput.onclick = () => copyText(frOutput.value);
 
 // ==================== FEATURES - FOLLOWERS SYNC ==================== //
 let followersMap = new Map();
