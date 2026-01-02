@@ -739,3 +739,23 @@ document.getElementById("btnFolsyncClear").addEventListener("click", () => {
   folsyncSideStat.textContent = "";
   if (folsyncResultsBlock) folsyncResultsBlock.classList.add("is-hidden");
 });
+
+// ==================== DARK MODE ==================== //
+document
+  .getElementById("darkModeToggle")
+  .addEventListener("click", function () {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const moonIcon = document.querySelector("#darkModeToggle .moon");
+    const sunIcon = document.querySelector("#darkModeToggle .sun");
+
+    if (currentTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "light");
+      sunIcon.style.animation = "fadeOut 0.5s ease-out forwards"; // Animasi ikon matahari menghilang
+      moonIcon.style.animation = "fadeIn 0.5s ease-out forwards"; // Animasi ikon bulan muncul
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
+      moonIcon.style.animation = "fadeOut 0.5s ease-out forwards"; // Animasi ikon bulan menghilang
+      sunIcon.style.animation = "fadeIn 0.5s ease-out forwards"; // Animasi ikon matahari muncul
+    }
+  });
+

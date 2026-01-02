@@ -11,7 +11,7 @@
   /* Background */
   --color-bg:#F5F7F8;
   --color-bg-soft:#F9FAFB;
-  --color-surface:#ffffff;
+  --color-surface:#FFFFFF;
 
   /* Text */
   --color-text:#222B45;
@@ -62,23 +62,31 @@
 /* ---------- DARK MODE ---------- */
 [data-theme="dark"]{
   /* Brand */
-  --color-brand-500:#0bb24b;
-  --color-brand-700:#19c25c;
-  --color-brand-900:#6ee7a8;
+  --color-brand-100:#060a15;
+  --color-brand-300:#84EE8A;
+  --color-brand-500:#34C759;
+  --color-brand-700:#1A8F4E;
+  --color-brand-900:#095F40;
 
   /* Background / Surfaces */
-  --color-bg:#0b1220;
-  --color-bg-soft:#0f1a2b;
-  --color-surface:#111a2c;
+  --color-bg:#090E1C;
+  --color-bg-soft:#121F33;
+  --color-surface:#101729;
 
   /* Text */
-  --color-text:#f9fafb;
-  --color-text-strong:#d1fae5;
-  --color-text-muted:#a5b4c7;
+  --color-text:#F9FAFB;
+  --color-text-strong:#D1FAE5;
+  --color-text-muted:#798593;
 
   /* Borders */
-  --border:1px solid;
-  --color-border:#223049;
+  --border:1.25px solid;
+  --border-button:1.25px solid;
+  --border-dropbox:1.25px dashed;
+  --color-border:#283045;
+  --radius-xl:100px;
+  --radius-lg:16px;
+  --radius-md:14px;
+  --radius-sm:12px;
 
   /* Message */
   --danger:#FF383C;
@@ -99,11 +107,12 @@
   --layout-max-width:1100px;
 
   /* Typography */
-  --text-xs:8px;
-  --text-sm:10px;
-  --text-md:12px;
-  --text-lg:14px;
-  --text-xl:16px;
+  --text-xs:10px;
+  --text-sm:12px;
+  --text-md:14px;
+  --text-lg:16px;
+  --text-xl:18px;
+  --text-xxl:22px;
 
   --regular:400;
   --medium:500;
@@ -120,6 +129,7 @@
 body{
   font-family:"Sora";
   color: var(--color-text);
+  background-color:var(--color-bg);
 }
 
 /* ==================== LAYOUT - HEAD ==================== */
@@ -187,7 +197,7 @@ body{
   padding:6px 8px;
   border-radius:var(--radius-xl);
   font-size:var(--text-md);
-  font-weight:var(--semibold);
+  font-weight:var(--medium);
   border:var(--border) var(--color-border);
   background:var(--color-surface);
 }
@@ -392,6 +402,7 @@ a.btn{text-decoration:none}
   box-shadow:0 0 0 6px var(--color-brand-100);
 }
 
+input::placeholder,
 textarea::placeholder {
   font-family:"Sora";
   color:var(--color-text-muted);
@@ -493,6 +504,65 @@ textarea::placeholder {
 }
 .badge--ok{background:var(--color-brand-500)}
 .badge--no{background:var(--danger)}
+
+/* ==================== DARK MODE ==================== */
+.dark-mode-btn {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:48px;
+  height:48px;
+  background-color:var(--color-surface);
+  border:none;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow:var(--shadow-sm);
+  transition:background-color0.3sease;
+  z-index:1000;
+}
+
+.dark-mode-btn .sun {
+  display:none;
+}
+
+[data-theme="dark"] .dark-mode-btn {
+  background-color:var(--color-surface);
+}
+
+[data-theme="dark"] .sun {
+  display:block;
+  animation:fadeIn 0.5s ease-out forwards;
+}
+
+[data-theme="dark"] .moon {
+  display:none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity:0;
+    transform:scale(0.8);
+  }
+  to {
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity:1;
+    transform:scale(1);
+  }
+  to {
+    opacity: 0;
+    transform:scale(0.8);
+  }
+}
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width:760px){
