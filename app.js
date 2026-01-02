@@ -2,9 +2,9 @@
 const tabs = document.querySelectorAll(".tab");
 const sections = {
   batsearch: document.getElementById("tab-batsearch"),
-  findrep: document.getElementById("tab-findrep"),
-  redupe: document.getElementById("tab-redupe"),
   cleanink: document.getElementById("tab-cleanink"),
+  redupe: document.getElementById("tab-redupe"),
+  findrep: document.getElementById("tab-findrep"),
   folsync: document.getElementById("tab-folsync"),
 };
 
