@@ -549,7 +549,6 @@ textarea::placeholder {
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width:760px){
-  .btn--wide{min-width:160px}
-  .grid-2{grid-template-columns:1fr}
+  
   .container, .topbar, .tabs {padding:4px 8px 8px}
 }
