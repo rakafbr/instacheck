@@ -492,8 +492,8 @@ textarea::placeholder {
 /* ==================== DARK MODE ==================== */
 .dark-mode-btn {
   position:fixed;
-  bottom:12px;
-  right:12px;
+  bottom:16px;
+  right:16px;
   width:52px;
   height:52px;
   background-color:var(--color-surface);
@@ -504,7 +504,7 @@ textarea::placeholder {
   display:flex;
   justify-content:center;
   align-items:center;
-  box-shadow:var(--shadow-sm);
+  box-shadow:var(--shadow-md);
   transition:background-color0.3sease;
   z-index:1000;
   transition:border-radius 1s ease;
