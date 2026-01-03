@@ -67,7 +67,7 @@
 
   /* Background / Surfaces */
   --color-bg:#090E1C;
-  --color-bg-soft:#121F33;
+  --color-bg-soft:#1B2534;
   --color-surface:#101729;
 
   /* Text */
@@ -194,7 +194,7 @@ body{
   border:var(--border) var(--color-border);
   background:var(--color-surface);
 }
-.pill--ok{color:var(--color-brand-500); border-color:var(--color-brand-500); background:var(--color-brand-100)}
+.pill--ok{color:var(--color-brand-500); background:var(--color-surface)}
 .pill--color-text-muted{color:var(--color-text-muted)}
 
 /* ==================== COMPONENTS - TAB ==================== */
@@ -217,6 +217,7 @@ body{
   font-weight:var(--semibold);
   font-size:var(--text-md);
   cursor:pointer;
+  transition:all 0.7s ease-out;
 }
 .tab:hover{
   background:var(--color-brand-100);
@@ -239,6 +240,7 @@ body{
   cursor:pointer;
   border:var(--border-button);
   background:var(--color-surface);
+  transition:all 0.8s ease;
 }
 .btn--primary{
   background:var(--color-brand-500);
@@ -283,6 +285,7 @@ a.btn{text-decoration:none}
   box-shadow:var(--shadow-md);
   padding:10px 12px;
   display:none;
+  transition:all 3s ease;
 }
 .toast.is-show{display:block}
 .toast__row{
@@ -504,10 +507,7 @@ textarea::placeholder {
   box-shadow:var(--shadow-sm);
   transition:background-color0.3sease;
   z-index:1000;
-}
-.dark-mode-btn {
-  transition: 
-    border-radius 0.3s ease;
+  transition:border-radius 1s ease;
 }
 .dark-mode-btn:hover{
   border:var(--border) var(--color-border);
@@ -529,7 +529,7 @@ textarea::placeholder {
 @keyframes fadeIn {
   from {
     opacity:0;
-    transform:scale(0.8);
+    transform:scale(0.3);
   }
   to {
     opacity:1;
@@ -543,7 +543,7 @@ textarea::placeholder {
   }
   to {
     opacity:0;
-    transform:scale(0.8);
+    transform:scale(0.3);
   }
 }
 
@@ -551,4 +551,5 @@ textarea::placeholder {
 @media (max-width:760px){
   .btn--wide{min-width:160px}
   .grid-2{grid-template-columns:1fr}
+  .container, .topbar, .tabs {padding:4px 8px 8px}
 }
