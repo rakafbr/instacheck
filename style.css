@@ -492,8 +492,8 @@ textarea::placeholder {
 /* ==================== DARK MODE ==================== */
 .dark-mode-btn {
   position:fixed;
-  bottom:16px;
-  right:16px;
+  bottom:20px;
+  right:20px;
   width:52px;
   height:52px;
   background-color:var(--color-surface);
