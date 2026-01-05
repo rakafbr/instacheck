@@ -750,12 +750,12 @@ document
 
     if (currentTheme === "dark") {
       document.documentElement.setAttribute("data-theme", "light");
-      sunIcon.style.animation = "fadeOut 0.5s ease-out forwards"; // Animasi ikon matahari menghilang
-      moonIcon.style.animation = "fadeIn 0.5s ease-out forwards"; // Animasi ikon bulan muncul
+      sunIcon.style.animation = "fadeOut 0.5s ease-out forwards";
+      moonIcon.style.animation = "fadeIn 0.5s ease-out forwards";
     } else {
       document.documentElement.setAttribute("data-theme", "dark");
-      moonIcon.style.animation = "fadeOut 0.5s ease-out forwards"; // Animasi ikon bulan menghilang
-      sunIcon.style.animation = "fadeIn 0.5s ease-out forwards"; // Animasi ikon matahari muncul
+      moonIcon.style.animation = "fadeOut 0.5s ease-out forwards";
+      sunIcon.style.animation = "fadeIn 0.5s ease-out forwards";
     }
   });
 

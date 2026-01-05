@@ -1,14 +1,14 @@
 /* ==================== DESIGN TOKENS ==================== */
-/* ---------- LIGHT MODE ---------- */
+/* -------------------- LIGHT MODE -------------------- */
 :root{
-  /* Brand */
+  /* Primary Color */
   --color-brand-100:#F3FCF4;
   --color-brand-300:#84EE8A;
   --color-brand-500:#34C759;
   --color-brand-700:#1A8F4E;
   --color-brand-900:#095F40;
 
-  /* Background */
+  /* Background Color */
   --color-bg:#F5F7F8;
   --color-bg-soft:#F9FAFB;
   --color-surface:#FFFFFF;
@@ -18,7 +18,7 @@
   --color-text-strong:#18203B;
   --color-text-muted:#58688F;
 
-  /* Borders */
+  /* Border */
   --border:1.25px solid;
   --border-button:1.25px solid;
   --border-dropbox:1.25px dashed;
@@ -33,7 +33,7 @@
   --succes:#34C759;
   --warning:#FFCC00;
 
-  /* Effects */
+  /* Effect */
   --shadow-xs:0 2px 6px rgba(0,0,0,0.04);
   --shadow-sm:0 2px 6px rgba(0,0,0,0.06);
   --shadow-md:0px 3px 12px rgba(0,0,0,0.10);
@@ -56,16 +56,16 @@
   color-scheme:light;
 }
 
-/* ---------- DARK MODE ---------- */
+/* -------------------- DARK MODE -------------------- */
 [data-theme="dark"]{
-  /* Brand */
+  /* Primary Color */
   --color-brand-100:#060A15;
   --color-brand-300:#84EE8A;
   --color-brand-500:#34C759;
   --color-brand-700:#1A8F4E;
   --color-brand-900:#095F40;
 
-  /* Background / Surfaces */
+  /* Background Color */
   --color-bg:#090E1C;
   --color-bg-soft:#1B2534;
   --color-surface:#101729;
@@ -75,7 +75,7 @@
   --color-text-strong:#D1FAE5;
   --color-text-muted:#798593;
 
-  /* Borders */
+  /* Border */
   --border:1.25px solid;
   --border-button:1.25px solid;
   --border-dropbox:1.25px dashed;
@@ -90,7 +90,7 @@
   --succes:#34C759;
   --warning:#FFCC00;
 
-  /* Effects */
+  /* Effect */
   --shadow-xs:0 2px 8px rgba(0,0,0,0.35);
   --shadow-sm:0 4px 12px rgba(0,0,0,0.40);
   --shadow-md:0 10px 24px rgba(0,0,0,0.45);
