@@ -758,4 +758,3 @@ document
       sunIcon.style.animation = "fadeIn 0.5s ease-out forwards";
     }
   });
-
