@@ -9,9 +9,9 @@
   --primary-color-900:#095F40;
 
   /* Colors - Background Color */
-  --color-bg:#F5F7F8;
-  --color-bg-soft:#F9FAFB;
-  --color-surface:#FFFFFF;
+  --bg-color-base:#F5F7F8;
+  --bg-color-soft:#F9FAFB;
+  --bg-color-surface:#FFFFFF;
 
   /* Colors - * Message COLOR */
   --color-danger:#FF383C;
@@ -71,9 +71,9 @@
   --primary-color-900:#095F40;
 
   /* Colors - Background Color */
-  --color-bg:#090E1C;
-  --color-bg-soft:#1B2534;
-  --color-surface:#101729;
+  --bg-color-base:#090E1C;
+  --bg-color-soft:#1B2534;
+  --bg-color-surface:#101729;
 
   /* Colors - * Message COLOR */
   --color-danger:#FF383C;
@@ -129,7 +129,7 @@
 body{
   font-family:"Sora";
   color:var(--text-color);
-  background-color:var(--color-bg);
+  background-color:var(--bg-color-base);
 }
 
 /* ==================== LAYOUT - HEAD ==================== */
@@ -164,7 +164,7 @@ body{
 
 /* ==================== LAYOUT - PANEL ==================== */
 .panel{
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
   border:var(--border-solid) var(--border-color);
   border-radius:var(--rounded-lg);
   box-shadow:var(--shadow-xl);
@@ -198,9 +198,9 @@ body{
   font-size:var(--text-md);
   font-weight:var(--font-medium);
   border:var(--border-solid) var(--border-color);
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
 }
-.pill--ok{color:var(--primary-color-500); background:var(--color-surface)}
+.pill--ok{color:var(--primary-color-500); background:var(--bg-color-surface)}
 .pill--text-color-muted{color:var(--text-color-muted)}
 
 /* ==================== COMPONENTS - TAB ==================== */
@@ -215,7 +215,7 @@ body{
 .tab{
   display:flex;
   border:var(--border-solid) var(--border-color);
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
   gap:4px;
   padding:10px 12px;
   border-radius:var(--rounded-sm);
@@ -233,7 +233,7 @@ body{
 .tab:is(:focus, .tab--active){
   background:var(--primary-color-500);
   border-color:var(--primary-color-500);
-  color:var(--color-surface);
+  color:var(--bg-color-surface);
 }
 
 /* ==================== COMPONENT - BUTTON ==================== */
@@ -245,12 +245,12 @@ body{
   font-size:var(--text-md);
   cursor:pointer;
   border:var(--border-solid);
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
   transition:all .5s ease;
 }
 .btn--primary{
   background:var(--primary-color-500);
-  color:var(--color-surface);
+  color:var(--bg-color-surface);
   border-color:var(--primary-color-500);
 }
 .btn--primary:hover{
@@ -258,7 +258,7 @@ body{
   border-color:var(--primary-color-700);
 }
 .btn--secondary{
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
   color:var(--primary-color-500);
   border-color:var(--primary-color-500);
 }
@@ -286,7 +286,7 @@ a.btn{text-decoration:none}
   z-index:9999;
   width:auto;
   border:var(--border-solid) var(--border-color);
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
   border-radius:var(--rounded-sm);
   box-shadow:var(--shadow-md);
   padding:10px 12px;
@@ -331,7 +331,7 @@ a.btn{text-decoration:none}
 /* ==================== COMPONENT - DROPBOX ==================== */
 .dropbox{
   border:var(--border-dashed) var(--border-color);
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
   border-radius:var(--rounded-md);
   padding:12px;
   transition:box-shadow .5s ease, border-color .5s ease;
@@ -383,7 +383,7 @@ a.btn{text-decoration:none}
   border:var(--border-solid) var(--border-color);
   border-radius:var(--rounded-md);
   padding:14px;
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
   font-family:"Sora";
   font-size:var(--text-md);
   line-height:150%;
@@ -399,7 +399,7 @@ a.btn{text-decoration:none}
   border:var(--border-solid) var(--border-color);
   border-radius:var(--rounded-sm);
   padding:14px;
-  background:var(--color-surface);
+  background:var(--bg-color-surface);
   font-family:"Sora";
   font-size:var(--text-md);
   outline:none;
@@ -441,7 +441,7 @@ textarea::placeholder {
 .card{
   border:var(--border-solid) var(--border-color);
   border-radius:var(--rounded-md);
-  background:var(--color-bg-soft);
+  background:var(--bg-color-soft);
   padding:12px 14px;
   display:flex;
   align-items:center;
@@ -489,7 +489,7 @@ textarea::placeholder {
   display:flex;
   align-items:center;
   justify-content:center;
-  color:var(--color-surface);
+  color:var(--bg-color-surface);
   flex-shrink:0;
 }
 .badge--ok{background:var(--color-succes)}
@@ -502,7 +502,7 @@ textarea::placeholder {
   right:20px;
   width:52px;
   height:52px;
-  background-color:var(--color-surface);
+  background-color:var(--bg-color-surface);
   border:none;
   border-radius:var(--rounded-xl);
   font-size:24px;
@@ -523,7 +523,7 @@ textarea::placeholder {
   display:none;
 }
 [data-theme="dark"] .dark-mode-btn {
-  background-color:var(--color-surface);
+  background-color:var(--bg-color-surface);
 }
 [data-theme="dark"] .sun {
   display:block;
