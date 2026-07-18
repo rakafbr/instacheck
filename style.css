@@ -2,15 +2,15 @@
 /* -------------------- LIGHT MODE -------------------- */
 :root{
   /* Colors - Primary Color */
-  --primary-color-100:#F3FCF4;
-  --primary-color-300:#84EE8A;
-  --primary-color-500:#34C759;
-  --primary-color-700:#1A8F4E;
-  --primary-color-900:#095F40;
+  --primary-color-100:#F4F0FF;
+  --primary-color-300:#B9A5F5;
+  --primary-color-500:#6C4BD3;
+  --primary-color-700:#4D2DA8;
+  --primary-color-900:#32127A;
 
   /* Colors - Background Color */
-  --bg-color-base:#F5F7F8;
-  --bg-color-soft:#F9FAFB;
+  --bg-color-base:#F8F7FC;
+  --bg-color-soft:#F3F0FA;
   --bg-color-surface:#FFFFFF;
 
   /* Colors - * Message COLOR */
@@ -19,9 +19,9 @@
   --color-warning:#FFCC00;
 
   /* Typography - Text Color */
-  --text-color:#222B45;
-  --text-color-strong:#18203B;
-  --text-color-muted:#58688F;
+  --text-color:#312A45;
+  --text-color-strong:#211735;
+  --text-color-muted:#756B8A;
 
   /* Typography - Font Size */
   --text-xs:10px;
@@ -43,7 +43,7 @@
   --border-dashed:1.25px dashed;
 
   /* Borders - Border Color */
-  --border-color:#DDE3EA;
+  --border-color:#DED7EB;
 
   /* Borders - Border Radius */
   --rounded-xs:10px;
@@ -64,26 +64,26 @@
 /* -------------------- DARK MODE -------------------- */
 [data-theme="dark"]{
   /* Colors - Primary Color */
-  --primary-color-100:#060A15;
-  --primary-color-300:#84EE8A;
-  --primary-color-500:#34C759;
-  --primary-color-700:#1A8F4E;
-  --primary-color-900:#095F40;
+  --primary-color-100:#1B1233;
+  --primary-color-300:#B9A5F5;
+  --primary-color-500:#7D5BE2;
+  --primary-color-700:#5B39B6;
+  --primary-color-900:#32127A;
 
   /* Colors - Background Color */
-  --bg-color-base:#090E1C;
-  --bg-color-soft:#1B2534;
-  --bg-color-surface:#101729;
+  --bg-color-base:#0E0919;
+  --bg-color-soft:#1A1229;
+  --bg-color-surface:#151020;
 
   /* Colors - * Message COLOR */
-  --color-danger:#FF383C;
-  --color-succes:#34C759;
-  --color-warning:#FFCC00;
+  --color-danger:#FF5A5F;
+  --color-succes:#4CD47C;
+  --color-warning:#FFD43B;
 
   /* Typography - Text Color */
-  --text-color:#F9FAFB;
-  --text-color-strong:#D1FAE5;
-  --text-color-muted:#798593;
+  --text-color:#F5F1FF;
+  --text-color-strong:#E5DCFF;
+  --text-color-muted:#9E93B5;
 
   /* Typography - Font Size */
   --text-xs:10px;
@@ -105,7 +105,7 @@
   --border-dashed:1.25px dashed;
 
   /* Borders - Border Color */
-  --border-color:#283045;
+  --border-color:#34284A;
 
   /* Borders - Border Radius */
   --rounded-xs:10px;
