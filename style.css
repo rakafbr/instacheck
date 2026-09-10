@@ -127,7 +127,7 @@
 *{box-sizing:border-box}
 
 body{
-  font-family:"Sora";
+  font-family:"Geist Pixel";
   color:var(--text-color);
   background-color:var(--bg-color-base);
 }
@@ -219,7 +219,7 @@ body{
   gap:4px;
   padding:10px 12px;
   border-radius:var(--rounded-sm);
-  font-family:"Sora";
+  font-family:"Geist Pixel";
   font-weight:var(--font-semibold);
   font-size:var(--text-md);
   cursor:pointer;
@@ -240,7 +240,7 @@ body{
 .btn{
   border-radius:var(--rounded-xl);
   padding:10px 14px;
-  font-family:"Sora";
+  font-family:"Geist Pixel";
   font-weight:var(--font-semibold);
   font-size:var(--text-md);
   cursor:pointer;
@@ -384,7 +384,7 @@ a.btn{text-decoration:none}
   border-radius:var(--rounded-md);
   padding:14px;
   background:var(--bg-color-surface);
-  font-family:"Sora";
+  font-family:"Geist Pixel";
   font-size:var(--text-md);
   line-height:150%;
   outline:none;
@@ -400,7 +400,7 @@ a.btn{text-decoration:none}
   border-radius:var(--rounded-sm);
   padding:14px;
   background:var(--bg-color-surface);
-  font-family:"Sora";
+  font-family:"Geist Pixel";
   font-size:var(--text-md);
   outline:none;
 }
@@ -410,7 +410,7 @@ a.btn{text-decoration:none}
 }
 input::placeholder,
 textarea::placeholder {
-  font-family:"Sora";
+  font-family:"Geist Pixel";
   color:var(--text-color-muted);
 }
 
