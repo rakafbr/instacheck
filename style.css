@@ -2,26 +2,26 @@
 /* -------------------- LIGHT MODE -------------------- */
 :root{
   /* Colors - Primary Color */
-  --primary-color-100:#F4F0FF;
-  --primary-color-300:#B9A5F5;
-  --primary-color-500:#6C4BD3;
-  --primary-color-700:#4D2DA8;
-  --primary-color-900:#32127A;
+  --primary-color-100:#EEF1FF;
+  --primary-color-300:#8191FF;
+  --primary-color-500:#081BCA;
+  --primary-color-700:#0616A2;
+  --primary-color-900:#030B63;
 
   /* Colors - Background Color */
-  --bg-color-base:#F8F7FC;
-  --bg-color-soft:#F3F0FA;
+  --bg-color-base:#F7F8FF;
+  --bg-color-soft:#EFF2FF;
   --bg-color-surface:#FFFFFF;
-
+  
   /* Colors - * Message COLOR */
   --color-danger:#FF383C;
   --color-succes:#34C759;
   --color-warning:#FFCC00;
 
   /* Typography - Text Color */
-  --text-color:#312A45;
-  --text-color-strong:#211735;
-  --text-color-muted:#756B8A;
+  --text-color:#27305A;
+  --text-color-strong:#111A42;
+  --text-color-muted:#6C769B;
 
   /* Typography - Font Size */
   --text-xs:10px;
@@ -43,7 +43,7 @@
   --border-dashed:1.25px dashed;
 
   /* Borders - Border Color */
-  --border-color:#DED7EB;
+  --border-color:#D4DAF5;
 
   /* Borders - Border Radius */
   --rounded-xs:10px;
@@ -53,10 +53,10 @@
   --rounded-xl:100px;
   
   /* Effects - Box Shadow */
-  --shadow-xs:0 2px 6px rgba(0,0,0,0.04);
-  --shadow-sm:0 2px 6px rgba(0,0,0,0.06);
-  --shadow-md:0px 3px 12px rgba(0,0,0,0.10);
-  --shadow-lg:0 20px 60px rgba(0,0,0,0.18);
+  --shadow-xs:0 2px 6px rgba(8,27,202,0.05);
+  --shadow-sm:0 2px 8px rgba(8,27,202,0.08);
+  --shadow-md:0 4px 14px rgba(8,27,202,0.12);
+  --shadow-lg:0 20px 60px rgba(8,27,202,0.16);
 
   color-scheme:light;
 }
@@ -64,16 +64,16 @@
 /* -------------------- DARK MODE -------------------- */
 [data-theme="dark"]{
   /* Colors - Primary Color */
-  --primary-color-100:#1B1233;
-  --primary-color-300:#B9A5F5;
-  --primary-color-500:#7D5BE2;
-  --primary-color-700:#5B39B6;
-  --primary-color-900:#32127A;
+  --primary-color-100:#10183D;
+  --primary-color-300:#6F82FF;
+  --primary-color-500:#081BCA;
+  --primary-color-700:#0718AD;
+  --primary-color-900:#07116D;
 
   /* Colors - Background Color */
-  --bg-color-base:#0E0919;
-  --bg-color-soft:#1A1229;
-  --bg-color-surface:#151020;
+  --bg-color-base:#070A18;
+  --bg-color-soft:#0D1430;
+  --bg-color-surface:#0A1026;
 
   /* Colors - * Message COLOR */
   --color-danger:#FF5A5F;
@@ -81,9 +81,9 @@
   --color-warning:#FFD43B;
 
   /* Typography - Text Color */
-  --text-color:#F5F1FF;
-  --text-color-strong:#E5DCFF;
-  --text-color-muted:#9E93B5;
+  --text-color:#F1F3FF;
+  --text-color-strong:#FFFFFF;
+  --text-color-muted:#A6AFD3;
 
   /* Typography - Font Size */
   --text-xs:10px;
@@ -105,7 +105,7 @@
   --border-dashed:1.25px dashed;
 
   /* Borders - Border Color */
-  --border-color:#34284A;
+  --border-color:#27336B;
 
   /* Borders - Border Radius */
   --rounded-xs:10px;
